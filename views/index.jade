@@ -3,19 +3,28 @@ extends layout
 block content
   section.container
    header
-
-   section#content(style="position:relative;")
-    img.flower(src="/images/picture/article/flower.png", style="position:absolute;left:-70px;bottom:0;opacity:0.9;", width="300", height="272")
+     style.
+      #content{position:relative;}
+      .flower{
+          position:absolute;
+          left:-70px;
+          bottom:0;
+          opacity:0.9;
+      }
+      .author { color:#a6d518; }
+      .title { margin-top:0; }
+   section#content
+    img.flower(src="/images/picture/article/flower.png", width="300", height="272")
     div.row
      div.col-xs-5
       h1.logo
        img(src="/images/icon/logo.png", width="215", height="30")
       p Welcome to #{title}
       p @powered by&nbsp;
-       a(href="work/f2e",style="color:#a6d518") 宏图志远|潘宏飞
+       a.author(href="work/f2e") 宏图志远|潘宏飞
      div.col-xs-7
       article.love-you.pull-left
-       h3.title(style="margin-top:0;") 想和你在桥上吹吹风
+       h3.title() 想和你在桥上吹吹风
        p.show
          div 想和你在桥上吹吹风
          br

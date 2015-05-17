@@ -1,0 +1,17 @@
+extends ../layout
+
+block stylesheets
+  style.
+   h3{}
+
+block content
+  ul.articles
+    - each article in articles
+     li.article
+      b.title= article.title
+      p.info
+       span.author= article.author
+       span.date= article.date
+
+
+

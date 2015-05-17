@@ -1,17 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Green House' });
-});
+var articles=require('./articles');
 
-router.get('/work/f2e', function(req, res, next) {
-    res.render('work/f2e/index.html',{});
-});
+module.exports=function(app){
+    /* GET home page. */
+    app.get('/', function(req, res, next) {
+        res.render('index', { title: 'Green House' });
+    });
 
-router.get('/photos', function(req, res, next) {
-    res.render('photos.html',{});
-});
+    app.get('/work/f2e', function(req, res, next) {
+        res.render('work/f2e/index.html',{});
+    });
 
-module.exports = router;
+    app.get('/photos', function(req, res, next) {
+        res.render('photos.html',{});
+    });
+
+    articles(app);
+};

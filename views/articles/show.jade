@@ -1,0 +1,35 @@
+extends ../layout
+
+block stylesheets
+  style.
+   .container{max-width:900px;}
+   article{
+     box-shadow: 8px 8px 40px #ccc;
+   }
+   article .title{text-align:center;color:#a6d518;}
+   .info .other{text-align:right;}
+   .info .info-item{margin-left:15px;}
+   .info .info-item:first-child {margin:0;}
+
+block content
+  article.container
+   h1.title= title
+   div.info.row
+    .col-xs-12
+      span.info-item
+       label 分类：
+       span.type= type
+      span.info-item
+       label 标签：
+       span.tags= tags
+    .col-xs-12
+      span.info-item
+       label 作者：
+       span.author= author
+      span.info-item
+       label 创作日期：
+       span.date= date
+   section.content!= content
+
+
+
