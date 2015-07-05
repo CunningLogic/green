@@ -247,32 +247,9 @@
      </footer>
    </article>
 
-   <link href="/javascripts/vender/fancybox/jquery.fancybox.css" rel="stylesheet"/>
+   <link href="/javascripts/qui/fancybox/jquery.fancybox.css" rel="stylesheet"/>
 
-   <script src="/javascripts/jquery.1.8.3.js"></script>
-   <script src="/javascripts/vender/fancybox/jquery.fancybox.js"></script>
-   <script src="/javascripts/jquery.lazyload.js"></script>
-   <script>
-     $(function(){
-       $("#content").delegate(".photo-wrap img","mouseover mouseleave",function(){
-         $(this).toggleClass("gray");
-       });
-
-       $(".photo-wrap img").lazyload({
-           attr:"data-original"
-       });
-
-       $("#content .fancybox").fancybox({
-           padding : 15,
-           autoScale : false,
-           transitionIn : 'none',
-           transitionOut : 'none',
-           helpers : {
-               media : {},
-               buttons : {}
-           }
-       });
-     });
-   </script>
+   <script src="/javascripts/mui/helper.js"></script>
+   <script src="/javascripts/bus/photo-min.js"></script>
 </body>
 </html>

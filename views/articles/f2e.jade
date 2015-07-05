@@ -36,6 +36,7 @@ block content
                    a(href="/articles/f2e/#{article.slug}")
                     span.name #{article.name}
 block scripts
+ script(src="/javascripts/qui/core/jquery.js")
  script.
   $('.node .trigger').click(function(e){
     var dir=$(this).next('.dir');

@@ -1,0 +1,15 @@
+{
+  "name": "green-editor",
+  "author": {
+    "name": "pan hong fei",
+    "email": "fei.pan@dji.com"
+  },
+  "dependencies": {
+     "mui":{
+       "api":"api.js"
+     },
+     "qui":{
+       "qeditor":"jquery.qeditor.js"
+     }
+  }
+}

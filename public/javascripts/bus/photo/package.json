@@ -1,0 +1,13 @@
+{
+  "name": "green-photos",
+  "author": {
+    "name": "pan hong fei",
+    "email": "fei.pan@dji.com"
+  },
+  "dependencies": {
+     "qui":{
+       "fancybox":"jquery.fancybox.js",
+       "lazyload":"jquery.lazyload.js"
+     }
+  }
+}

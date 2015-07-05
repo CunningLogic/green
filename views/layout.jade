@@ -3,12 +3,13 @@ html
   head
     title Green House - #{title}
     meta(content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no",name="viewport")
+    link(href="/images/icon/favicon.ico" rel="shortcut icon" type="image/x-icon")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="/stylesheets/vender/bootstrap.min.css")
     link(href="/stylesheets/vender/font-awesome.css",rel="stylesheet")
     block stylesheets
 
-    script(type="text/javascript",src="/javascripts/jquery.1.8.3.js")
+    script(src="/javascripts/mui/helper.js")
   body
     block content
 

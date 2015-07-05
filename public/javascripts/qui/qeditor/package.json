@@ -1,0 +1,15 @@
+{
+  "name": "jquery-qeditor",
+  "description": "jquery qeditor",
+  "version": "0.5",
+  "author": {
+    "name": "jquery author",
+    "email": "jquery@jquery.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+      "qui":{
+          "core":"jquery.js"
+      }
+  }
+}

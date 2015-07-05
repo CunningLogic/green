@@ -1,7 +1,7 @@
 extends ../layout
 
 block stylesheets
-  link(href="/javascripts/vender/qeditor/jquery.qeditor.css",rel="stylesheet")
+  link(href="/javascripts/qui/qeditor/jquery.qeditor.css",rel="stylesheet")
   style.
    .container{
      max-width:990px;
@@ -33,62 +33,31 @@ block content
   h3 Q Editor
   form#article
    .form-group
-     input#id.hidden(value='#{_id}')
+     input#id.hidden(value="#{_id||''}")
    .form-group
      label slug:
-     input.form-control(name="slug",type="text",value="#{slug}")
+     input.form-control(name="slug",type="text",value="#{slug||''}")
    .form-group
      label title:
-     input.form-control(name="title",type="text",value="#{title}")
+     input.form-control(name="title",type="text",value="#{title||''}")
    .form-group
-     textarea#editor(name='content',data-value="#{content}")
+     textarea#editor(name='content',data-value="#{content||''}")
    .form-group
      label 分类:
-     input.form-control(name="type",type="text",value="#{type}")
+     input.form-control(name="type",type="text",value="#{type||''}")
    .form-group
      label 标签：
-     input.form-control(name="tags",type="text",value="#{tags}")
+     input.form-control(name="tags",type="text",value="#{tags||''}")
    .form-group
      label 作者:
-     input.form-control(name="author",type="text",value="#{author}")
+     input.form-control(name="author",type="text",value="#{author||''}")
    .form-group
      label 创作时间:
-     input.form-control(name="date",type="text",value="#{date}",placeholder="Format:YYYY-MM-DD")
+     input.form-control(name="date",type="text",value="#{date||''}",placeholder="Format:YYYY-MM-DD")
    .form-group
      a#btn-submit.btn.btn-success.form-control(href="#") 提交文稿
 
 block scripts
- script(src="/javascripts/vender/qeditor/jquery.qeditor.js")
- script(src="/javascripts/mui/api.js")
- script.
-   var form=$('#article');
-   $.api={};
-   $.api.article={
-     create:function(){
-       var api={method:'post',url:'/api/user/articles'};
-       return MUI.API.Factory({api:api},form);
-     },
-     edit:function(id){
-       var api={method:'put',url:'/api/user/articles/'+id};
-       return MUI.API.Factory({api:api},form);
-     },
-     query:function(){
-     },
-     all:function(){
-     }
-   };
+ script(src="/javascripts/bus/editor.js")
 
-   var _id=form.find('#id').val();
-   var value=$("#editor").data('value');
-       $("#editor").val(value)
-   $("#editor").qeditor({});
-
-
-   $("#btn-submit").click(function(e){
-     if(!_id)
-       $.api.article.create().submit();
-     else
-       $.api.article.edit(_id).submit();
-     return false;
-   });
 

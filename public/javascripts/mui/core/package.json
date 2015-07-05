@@ -1,0 +1,13 @@
+{
+  "name": "mui-api",
+  "description": "m(e)ui core will give you some util method to help",
+  "version": "1.0",
+  "author": {
+    "name": "jquery author",
+    "email": "jquery@jquery.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+     "qui-core":"qui/core/jquery.js"
+  }
+}

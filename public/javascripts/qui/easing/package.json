@@ -1,0 +1,13 @@
+{
+  "name": "jquery-easing",
+  "description": "jquery easing",
+  "version": "1.3",
+  "author": {
+    "name": "jquery author",
+    "email": "jquery@jquery.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jquery":"core/jquery.js"
+  }
+}
