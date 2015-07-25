@@ -11,7 +11,8 @@ module.exports = function (app) {
       title: String,
       content: String,
       tags: String,
-      date: String
+      date: String,
+      beans: {type: Number, default: 0} //should use how much green beans
     }),
     Article = mongoose.model('article', Schema),
     moment = require('moment');
@@ -76,7 +77,13 @@ module.exports = function (app) {
    * route to show article
    * ***/
   app.get("/articles", function (req, res) {
-    Article.find({}, function (err, docs) {
+    Article.find({},null, {sort: {'_id':-1},limit:20}, function (err, docs) {
+      docs=docs.map(function(item){
+        item['summary']=item.content.replace(/<.*?>|&.*?;/g,'')
+            .substring(0,220).concat("...");
+        return item;
+      });
+
       res.render('articles/index', {articles: docs});
     });
   });
@@ -172,18 +179,7 @@ module.exports = function (app) {
     });
   });
   app.get('/articles/f2e/:slug', function (req, res) {
-    var slug = req.params.slug,
-      from = req.query.from;
-    if (from == '15ba') {
-      var article = Article.findOne({slug: slug}, function (err, article) {
-        if (err) {
-          return res.send(err);
-        }
-        res.render('articles/show', article);
-      });
-    } else {
-      res.redirect('/');//to home
-    }
+    res.redirect('/articles/'+eq.params.slug);//to home
   });
 
 
@@ -192,12 +188,18 @@ module.exports = function (app) {
    * */
   app.get("/articles/:slug", function (req, res) {
     var slug = req.params.slug,
-      article = Article.findOne({slug: slug}, function (err, article) {
-        if (err) {
-          return res.send(err);
-        }
+        from = req.query.from;
+    var article = Article.findOne({slug: slug}, function (err, article) {
+      if (err) {
+        return res.send(err);
+      }
+      //=====如果不需要beans或者带有from 15ba参数，可以访问文章
+      if(from == '15ba'||article.beans===0){
         res.render('articles/show', article);
-      });
+      }else{
+        res.redirect('/');//to home
+      }
+    });
   });
   app.get('/articles/edit/:slug', function (req, res) {
     var slug = req.params.slug,

@@ -1,0 +1,80 @@
+.container {
+  max-width: 990px;
+}
+.container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.container h3 {
+  font-size: 26px;
+  color: #666;
+}
+.container h4 {
+  font-size: 20px;
+}
+.container h3.section-title {
+  margin-bottom: 20px;
+}
+.container .main {
+  margin-top: 60px;
+}
+.container header .small {
+  font-size: 14px;
+  margin-left: 10px;
+}
+.container .article {
+  border-bottom: 1px dashed #ccc;
+  padding: 10px 0 15px 0;
+}
+.container .article:first-child {
+  padding-top: 0;
+}
+.container .article a.wrap {
+  display: block;
+  text-decoration: none;
+}
+.container .article a.wrap:hover .title {
+  opacity: 0.8;
+}
+.container .article .title {
+  border-left: 3px solid #3cab35;
+  padding-left: 10px;
+  color: #3cab35;
+  transition: color 0.3s ease-out;
+  margin-left: 5px;
+}
+.container .article p {
+  color: #777;
+}
+.container .article .author,
+.container .article .date {
+  color: #999;
+}
+.container .article .author {
+  margin-right: 15px;
+}
+.container .cate-box {
+  margin-top: 45px;
+}
+.container .cate-box .cate-list:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.container .cate-box li.cate {
+  margin-right: 10px;
+  float: left;
+}
+.container .cate-box li.cate a {
+  background: #a6d518;
+  padding: 15px;
+  border-radius: 50%;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  transition: background 0.3s ease-out;
+}
+.container .cate-box li.cate a:hover {
+  background: #3cab35;
+}

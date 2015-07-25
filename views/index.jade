@@ -16,7 +16,7 @@ block content
       a.top{
         border: 1px solid #3cab35;
         line-height: 45px;
-        margin-top: 70px;
+        margin-top: 20px;
         box-shadow: none;
         color:#333;
         font-size:25px;
@@ -25,6 +25,7 @@ block content
         text-decoration:none;
       }
       a.top:hover{border: 1px solid #a6d518;}
+      a.create{margin-top: 50px;}
 
    section#content
     img.flower(src="/images/picture/article/flower.png", width="300", height="272")
@@ -71,6 +72,9 @@ block content
       div.music.pull-right
        script(src="http://www.xiami.com/widget/player-multi?uid=30003914&sid=394695,84136,1773862701,1769718699,1774026318,1773517343,381481,1773554020,1772471309,1769645575,&width=250&height=420&mainColor=808000&backColor=808000&autoplay=0&mode=js")
        div.picture
+         a.top.create(href="/articles")
+           span(style="color:#3cab35;") 原创.
+           span 阅读
          a.top(href="/articles/top")
            span(style="color:#cc171c;") 推荐.
            span 阅读

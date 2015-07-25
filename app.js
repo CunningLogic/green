@@ -8,12 +8,13 @@ var ejs=require('ejs');
 var mongoose=require('mongoose');
 var routes = require('./routes/index');
 var app = express();
+var stylus= require("stylus");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.engine('.html',ejs.__express)
+app.engine('.html',ejs.__express);
 
 
 // uncomment after placing your favicon in /public
@@ -22,11 +23,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(stylus.middleware({
+  src: path.join(__dirname, 'public'),
+  compress: false
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //connect database
 app.mongoose=mongoose;
-mongoose.connect('mongodb://localhost/green');
+mongoose.connect('mongodb://admin:mongo158@localhost:27017/green');
+//mongoose.connect('mongodb://localhost/green');
 routes(app);//use routes
 
 // catch 404 and forward to error handler

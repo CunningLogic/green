@@ -5,11 +5,17 @@ block stylesheets
    .container{max-width:900px;}
    article{
      box-shadow: 8px 8px 40px #ccc;
+     padding-bottom: 30px;
    }
    article .title{text-align:center;color:#a6d518;}
    .info .other{text-align:right;}
    .info .info-item{margin-left:15px;}
    .info .info-item:first-child {margin:0;}
+
+   .push-top .btn-info{
+     background: #3cab35;
+     border-color: #3cab35;
+   }
 
 block content
   article.container
@@ -30,6 +36,13 @@ block content
        label 创作日期：
        span.date= date
    section.content!= content
+   section.more
+     form.push-top
+       h3.push-title 抛砖引玉
+       .form-group
+         input.form-control(type="text",placeholder="绿色家园，共建生态")
+       .form-group
+         input.form-control.btn.btn-info(type="button",value="好文推荐")
 
 
 

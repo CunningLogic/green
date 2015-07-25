@@ -43,6 +43,7 @@ article h1.logo {
 }
 
 .blog .cover {
+  height: 260px;
   overflow: hidden;
 }
 .cover img {
@@ -70,4 +71,5 @@ article h1.logo {
 
 @media screen and (max-width:640px) {
   .col-xs-4{width:100%;padding:0;}
+  .blog .cover{height:auto;}
 }
