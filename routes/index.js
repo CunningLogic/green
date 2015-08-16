@@ -15,23 +15,26 @@ module.exports=function(app){
     app.get('/javascripts/bus/:name', function(req, res, next) {
         var name =req.params.name,
             dir=name.replace(/(\.js|-min\.js)/g,'');
+      console.log('------');
         if(name.indexOf('min.js')>-1){
             var path=req.url.replace(name,dir+'/build/'+name);
             res.writeHead(200, { 'Content-Type': 'text/javascript' });
             res.end('MUI.helper.loadScripts("'+path+'")');
         }
         else{
-         compiler(dir,function(dep,err){
-             if(err){
-                 res.json({success:false,status:'400',error:err});
-             }else if(dep){
-                 var list=dep.list.map(function(src){
-                   return src.replace(dep.root,'');
-                 });
-                 res.writeHead(200, { 'Content-Type': 'text/javascript' });
-                 res.end('MUI.helper.loadScripts("'+list.join(',')+'")');
-             }
-         });
+//         compiler(dir,function(dep,err){
+//             if(err){
+//                 res.json({success:false,status:'400',error:err});
+//             }else if(dep){
+//                 var list=dep.list.map(function(src){
+//                   return src.replace(dep.root,'');
+//                 });
+//                 res.writeHead(200, { 'Content-Type': 'text/javascript' });
+//                 res.end('MUI.helper.loadScripts("'+list.join(',')+'")');
+//             }
+//         });
+           //var list=combo(req.search);
+          console.log(req.search);
         }
     });
 
