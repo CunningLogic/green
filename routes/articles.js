@@ -179,7 +179,7 @@ module.exports = function (app) {
     });
   });
   app.get('/articles/f2e/:slug', function (req, res) {
-    res.redirect('/articles/'+eq.params.slug);//to home
+    res.redirect('/articles/'+req.params.slug);//to home
   });
 
 

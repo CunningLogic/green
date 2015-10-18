@@ -39,7 +39,10 @@ module.exports=function(app){
     });
 
     app.get('/work/f2e', function(req, res, next) {
-        res.render('work/f2e/index.html',{});
+      res.render('work/f2e/index.html',{});
+    });
+    app.get('/work/springxiao', function(req, res, next) {
+      res.render('work/springxiao/index.html',{});
     });
 
     app.get('/photos', function(req, res, next) {
