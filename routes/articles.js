@@ -179,7 +179,7 @@ module.exports = function (app) {
     });
   });
   app.get('/articles/f2e/:slug', function (req, res) {
-    res.redirect('/articles/'+eq.params.slug);//to home
+    res.redirect('/articles/'+req.params.slug);//to home
   });
 
 
@@ -190,8 +190,8 @@ module.exports = function (app) {
     var slug = req.params.slug,
         from = req.query.from;
     var article = Article.findOne({slug: slug}, function (err, article) {
-      if (err) {
-        return res.send(err);
+      if (err||!article) {
+        return res.send(err||'404,article is not found.');
       }
       //=====如果不需要beans或者带有from 15ba参数，可以访问文章
       if(from == '15ba'||article.beans===0){
