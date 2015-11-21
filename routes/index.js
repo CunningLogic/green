@@ -15,6 +15,7 @@ module.exports=function(app){
     app.get('/javascripts/bus/:name', function(req, res, next) {
         var name =req.params.name,
             dir=name.replace(/(\.js|-min\.js)/g,'');
+      console.log('------');
         if(name.indexOf('min.js')>-1){
             var path=req.url.replace(name,dir+'/build/'+name);
             res.writeHead(200, { 'Content-Type': 'text/javascript' });
@@ -32,11 +33,16 @@ module.exports=function(app){
                  res.end('MUI.helper.loadScripts("'+list.join(',')+'")');
              }
          });
+          //var list=combo(req.search);
+          //console.log(req.search);
         }
     });
 
     app.get('/work/f2e', function(req, res, next) {
-        res.render('work/f2e/index.html',{});
+      res.render('work/f2e/index.html',{});
+    });
+    app.get('/work/springxiao', function(req, res, next) {
+      res.render('work/springxiao/index.html',{});
     });
     app.get('/work/springxiao', function(req, res, next) {
       res.render('work/springxiao/index.html',{});
