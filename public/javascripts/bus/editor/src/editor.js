@@ -27,9 +27,13 @@
 
     $("#btn-submit").click(function(e){
         if(!_id)
-            $.api.article.create().submit();
+            $.api.article.create().submit(function(){
+              location.href="/articles";
+            });
         else
-            $.api.article.edit(_id).submit();
+            $.api.article.edit(_id).submit(function(){
+              location.href="/articles";
+            });
         return false;
     });
 })();

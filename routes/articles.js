@@ -93,6 +93,17 @@ module.exports = function (app) {
   app.get('/articles/new', function (req, res) {
     res.render('articles/editor', {});
   });
+  app.get('/articles/colorful', function (req, res) {
+    Article.find({"type": {$regex:/^生活\/.*/i}},null, {sort: {'_id':-1},limit:20}, function (err, docs) {
+      docs=docs.map(function(item){
+        item['summary']=item.content.replace(/<.*?>|&.*?;/g,'')
+            .substring(0,220).concat("...");
+        return item;
+      });
+
+      res.render('articles/colorful',  {articles: docs});
+    });
+  });
   app.get('/articles/remove/:id', function (req, res) {
     Article.find({_id: req.params.id}, function (err, docs) {
       if (docs.length > 0) docs[0].remove();
@@ -162,9 +173,11 @@ module.exports = function (app) {
     Article.find({}, function (err, docs) {
       docs.forEach(function (article) {
         var type = article.type || '',
-          parent = tree;
+            parent = tree;
         type.split('/').forEach(function (key) {
-          parent = parent.children[parent[key]] || {};
+          if(parent && parent.children){
+            parent = parent.children[parent[key]] || {};
+          }
         });
         (parent.children || []).push({
           icon: 'fa-file',
@@ -207,6 +220,7 @@ module.exports = function (app) {
         if (err) {
           return res.send(err);
         }
+
         res.render('articles/editor', article);
       });
   });
