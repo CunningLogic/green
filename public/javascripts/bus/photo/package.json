@@ -7,7 +7,7 @@
   "dependencies": {
      "qui":{
        "fancybox":"jquery.fancybox.js",
-       "lazyload":"jquery.lazyload.js"
+       "lazyload":"layzr.js"
      }
   }
 }
