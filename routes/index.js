@@ -45,8 +45,8 @@ module.exports=function(app){
     app.get('/work/springxiao', function(req, res, next) {
       res.render('work/springxiao/index.html',{});
     });
-    app.get('/work/springxiao', function(req, res, next) {
-      res.render('work/springxiao/index.html',{});
+    app.get('/funny', function(req, res, next) {
+      res.render('articles/funny.jade',{});
     });
 
     app.get('/photos', function(req, res, next) {
@@ -79,7 +79,7 @@ module.exports=function(app){
       if(req.query.clear) location = {}; //clear location data
 
       fs.writeFile(file_path, JSON.stringify(location), 'utf-8');
-      res.render('test.html',{});
+      res.render('location.html',{});
     });
 
     articles_rotue(app);

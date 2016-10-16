@@ -1,0 +1,50 @@
+extends ../layout
+
+block stylesheets
+  style.
+   .container{max-width:900px;}
+   .content img{width:100%;}
+   article{
+     box-shadow: 8px 8px 40px #ccc;
+     padding-bottom: 30px;
+   }
+   article .title{text-align:center;color:#a6d518;}
+   .info .other{text-align:right;}
+   .info .info-item{margin-left:15px;}
+   .info .info-item:first-child {margin:0;}
+
+   .push-top .btn-info{
+     background: #3cab35;
+     border-color: #3cab35;
+   }
+
+block content
+  article.container
+   h1.title= title
+   div.info.row
+    .col-xs-12
+      span.info-item
+       label 分类：
+       span.type 其它
+      span.info-item
+       label 标签：
+       span.tags 其它
+    .col-xs-12
+      span.info-item
+       label 作者：
+       span.author pan hong fei
+      span.info-item
+       label 创作日期：
+       span.date 2016-10-16
+   section.content
+     include ./funny-content.html
+   section.more
+     form.push-top.hidden
+       h3.push-title 抛砖引玉
+       .form-group
+         input.form-control(type="text",placeholder="绿色家园，共建生态")
+       .form-group
+         input.form-control.btn.btn-info(type="button",value="好文推荐")
+
+
+
