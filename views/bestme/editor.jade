@@ -1,0 +1,80 @@
+extends ../layout
+
+block styles
+  <!--build:css  home/home.v1.min.css-->
+  link(href=stylesheet_path('bestme/editor.css'), media="all", rel="stylesheet")
+  <!--endbuild-->
+
+block content
+  .page.editor-page
+    form#editor-form
+      input.hidden(name="_id", value=_id)
+      section.panel
+        h3.title 年终总结
+        input.text.space(type="text", name="year_2016", placeholder="用一句话总结你的 2016", value=year_2016)
+      section.panel
+        h3.title 年度最佳照片
+        ul.photo-list
+          each holder,index in ['eg: 每一张照片，都有一个故事等你诉说', 'eg: 风景如怡，不缀千里之行', 'eg: 年年花相似，岁岁人不同']
+            li.item.row
+              .picture-wrap.col-xs-2
+                a.btn-upload.fancybox(href="/upload/image")
+                  .picture
+                    - var imgSrc = locals["photo_picture_" + index];
+                    if imgSrc
+                      img(src=imgSrc)
+                  span.picture-desc 照片
+                input.hidden(name="photo_picture_#{index}", value=imgSrc)
+              .desc.col-xs-10
+                input.text.link(type="text", name="photo_title_#{index}", placeholder="照片标题", value=locals["photo_title_" + index])
+                textarea.textarea(name="photo_desc_#{index}", placeholder=holder)
+                  = locals["photo_desc_" + index]
+
+      section.panel
+        h3.title 年度最佳音乐
+        ul.music-list
+          li.item.row
+            .picture-wrap.col-xs-2
+              a.btn-upload.fancybox(href="/upload/image")
+                .picture
+                  if music_cover
+                    img(src=music_cover)
+                span.picture-desc 封面图
+              input.hidden(name="music_cover", value=music_cover)
+            .desc.col-xs-10
+              input.text.title(type="text", name="music_title", placeholder="【成都】- 赵雷", value=music_title)
+              input.text.link(type="text", name="music_link", placeholder="音乐链接，推荐使用网易云音乐的链接", value=music_link)
+              textarea.textarea(name="music_desc", placeholder="把音乐给你的，也分享给朋友们吧")
+                = music_desc
+
+      section.panel
+        h3.title 更多年度之最
+        ul.other-list
+          each holder,index in ['eg: 年度最佳电影，最佳游戏', 'eg: 年度最佳书籍，最佳团队', 'eg: 年度最搞笑，最佳单身狗']
+            li.item.row
+              .picture-wrap.col-xs-2
+                a.btn-upload.fancybox(href="/upload/image")
+                  .picture
+                    - var imgSrc = locals["others_picture_" + index];
+                    if imgSrc
+                      img(src=imgSrc)
+                  span.picture-desc 照片
+                input.hidden(name="others_picture_#{index}", value=imgSrc)
+              .desc.col-xs-10
+                input.text.title(type="text", name="others_title_#{index}", placeholder="格式：#电影#《血战钢锯岭》", value=locals["others_title_" + index])
+                textarea.textarea(name="others_desc_#{index}", placeholder=holder)
+                  = locals["others_desc_" + index]
+
+      section.panel
+        h3.title 新年寄语
+        input.text.space(type="text", name="year_2017", placeholder="送一句话，给新年的自己",value=year_2017)
+      .controls
+        a.btn.btn-success.pull-right(dui-click="save") 保存更改
+        a.btn.btn-info.pull-right(style="margin-right:10px;", href="/bestme/pages/#{userPageId}") 浏览页面
+
+
+
+block scripts
+  script(src=javascript_path('bus/bestme/editor.js'))
+
+

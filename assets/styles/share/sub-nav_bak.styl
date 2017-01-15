@@ -1,0 +1,201 @@
+// colors
+$color-1 ?= #030d18;
+// blue dark
+$color-2 ?= #f5484a;
+// orange
+$color-3 ?= #f0eee1;
+// cream
+$color-4 ?= #ffffff;
+// white
+
+// fonts
+$primary-font ?= 'Open Sans', sans-serif;
+
+// z-index
+$secondary-bar-zindex ?= 1;
+$intro-zindex ?= 2;
+$header-zindex ?= 3;
+
+// header height
+$header-S ?= 50px;
+$header-M ?= 70px;
+
+//intro height
+$intro-height-S ?= 300px;
+$intro-height-M ?= 400px;
+$intro-height-L ?= 600px;
+
+//secondary bar
+$bar-height-full ?= 100px;
+$bar-height ?= 70px;
+
+@import "../bootstrap/mixins/sub-nav-mixins"
+/* --------------------------------
+Secondary Fixed Navigation
+-------------------------------- */
+.cd-secondary-nav
+  position: relative;
+  z-index: $header-zindex;
+  @include font-smoothing;
+  ul
+    position: fixed;
+    width: 90%;
+    max-width: 400px;
+    right: 5%;
+    bottom: 20px;
+    @include border-radius;
+    background rgba($color-1, .96)
+    visibility hidden
+    z-index 1
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    @include transform(scale(0));
+    @include transform-origin(100% 100%);
+    -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+    -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+    transition: transform 0.3s, visibility 0s 0.3s;
+
+    &.is-visible {
+      visibility: visible;
+      @include transform(scale(1));
+      -webkit-transition: -webkit-transform 0.3s, visibility 0s 0s;
+      -moz-transition: -moz-transform 0.3s, visibility 0s 0s;
+      transition: transform 0.3s, visibility 0s 0s;
+    }
+
+  li a
+    display: block;
+    padding: 1.6em;
+    border-bottom: 1px solid lighten($color-1, 10%);
+    color: $color-3;
+
+  li:last-child a
+    border-bottom: none;
+    @include MQ(L)
+    z-index: $secondary-bar-zindex;
+    height: $bar-height-full;
+    background-color:rgba($color-1, .96)
+      @include transition(height 0.3s);
+      nav, ul, li, a
+        height: 100%;
+      ul
+      /* reset navigation values */
+      position: static;
+      width: auto;
+      max-width: 100%;
+      visibility: visible;
+      @include transform(scale(1));
+      text-align: center;
+      background-color: transparent;
+      li
+        display: inline-block;
+        margin-left: -4px;
+      li a
+        position: relative;
+        text-align: center;
+        display: block;
+        padding: 58px 40px 0 40px;
+        border-bottom: none;
+        @include transition(padding 0.2s);
+        b
+          text-transform: uppercase;
+          @include font-size(13px);
+          font-weight: 700;
+          color: rgba($color-3, .3);
+        span
+          position: absolute;
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          top: 18px;
+          @include center(x);
+          background-repeat: no-repeat;
+          background-image: url(../img/cd-nav-icons.svg);
+          @include transition(opacity 0.2s);
+        &:hover b, &.active b
+          color: $color-3;
+
+      &.is-fixed
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: $bar-height;
+        width: 100%;
+
+      &.animate-children
+        box-shadow: 0 1px 2px rgba(#000, .2);
+        li a
+          padding: 26px 30px 0 30px;
+          span
+            opacity: 0;
+
+.cd-secondary-nav-trigger
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+  width: 44px;
+  height: 44px;
+  background: rgba($color-1, .96);
+  @include border-radius;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  z-index: 2;
+  span {
+    position: absolute;
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: $color-3;
+    @include center;
+    -webkit-transition: background 0.3s;
+    -moz-transition: background 0.3s;
+    transition: background 0.3s;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    &::before {
+      right: -10px;
+      @include transform(rotate(0));
+    }
+    &::after {
+      left: -10px;
+      @include transform(rotate(0));
+    }
+  }
+
+  &.menu-is-open {
+    background: transparent;
+  }
+
+  &.menu-is-open span {
+    background: rgba($color-3, 0);
+    width: 20px;
+    height: 2px;
+
+    &::before, &::after {
+      background: rgba($color-3, 1);
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      top: 0;
+      left: 0;
+    }
+
+    &::before {
+      @include transform(rotate(135deg));
+    }
+
+    &::after {
+      @include transform(rotate(225deg));
+    }
+  }
+
+  @include MQ(L)
+  display none

@@ -1,0 +1,149 @@
+@import "../share/mixins"
+
+.modal-account
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(112, 116, 115, 0.5)
+  border-radius: 0
+  .modal-content
+    max-width: 448px
+    margin: auto
+    border: 0
+    box-shadow: 0px 2px 19px 0px rgba(0, 0, 0, 0.07)
+    background-color: #FFFFFF
+    border-radius: 0
+    .header
+      border-top: 1px solid transparent
+    .modal-body
+      padding: 0 40px
+    .logo
+      margin: 63px auto 44px
+      width: 50px
+    .h2-grey
+      font-weight: 500
+      font-size: 20px
+      color: #707473
+      line-height: 24px
+      margin: 0
+      padding: 0
+    .form-login
+      margin-top: 42px
+    .input-wrap
+      margin-top: 28px
+      position: relative
+      label
+        height: 1px
+        margin: 0
+        color: transparent
+        text-indent: -9999px
+        width: 100%
+        overflow: hidden
+        bottom: 0
+        left: 0
+        position: absolute
+        &:after,
+        &:before
+          content: " "
+          position: absolute
+          left: 0
+          right: 0
+          bottom: 0
+          height: 100%
+          background: #A6ACAA
+        &:after
+          left: 50%
+          right: 50%
+          background: #44A8F2
+          transition: all 300ms
+      .form-input:focus + label:after
+        left: 0
+        right: 0
+        transition: all 300ms
+    .form-input
+      display: block
+      width: 100%
+      height: 40px
+      padding: 9px 0
+      font-family: $font-opensans
+      font-weight: normal
+      font-size: 14px
+      color: #707473
+      line-height: 22px
+      border: 0
+      outline: 0
+      -webkit-appearance: none
+      appearance: none
+      &:-webkit-autofill
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+      &:focus
+        border-bottom-color: #44A8F2
+    .forgot-password
+      margin-top: 8px
+      a
+        font-family: $font-opensans
+        font-weight: normal
+        text-decoration: underline
+        font-size: 11px
+        color: #44A8F2
+        line-height: 17px
+    .footer
+      margin: 50px auto 40px
+      text-align: center
+      .footer-inner
+        margin: auto
+      .btn-submit, .h2-grey, .socialbar
+        display: inline-block
+      .h2-grey
+        margin: 0 25px
+      .btn-submit
+        background: #44A8F2
+        border: 1px solid #44A8F2
+        font-family: $font-opensans
+        font-weight: normal
+        font-size: 12px
+        color: #FFFFFF
+        line-height: 17px
+        padding: 9px 22px
+        display: inline-block
+        border-radius: 1px
+      .socialbar
+        display: inline-block
+        text-align: center
+        font-size: 0
+        .fa
+          font-size: 20px
+          vertical-align: middle
+          color: #BDBFBF
+        a
+          float: left
+          margin-right: 18px
+          &:last-of-type
+            margin-right: 0
+        .icon-googleplus-30
+          position: relative
+          left: -5px
+          top: -1px
+      .h2-grey,.socialbar,.socialbar a, .socialbar .icon
+        line-height: 37px
+        vertical-align: middle
+    .modal-footer
+      background: #F7F8F9
+      text-align: center
+      font-family: $font-opensans
+      font-weight: normal
+      font-size: 11px
+      color: #707473
+      line-height: 22px
+      padding: 10px
+      border-top: 0
+      > a
+        font-family: $font-opensans
+        font-weight: normal
+        font-size: 11px
+        color: #44A8F2
+        line-height: 22px
+        text-decoration: underline
+@import './browser_modal';

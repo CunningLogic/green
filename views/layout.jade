@@ -1,21 +1,94 @@
 doctype html
 html
   head
-    title Green House - #{title}
-    meta(content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no",name="viewport")
-    link(href="/images/icon/favicon.ico" rel="shortcut icon" type="image/x-icon")
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel="stylesheet", href="/stylesheets/vender/bootstrap.min.css")
-    link(href="/stylesheets/vender/font-awesome.css",rel="stylesheet")
-    block stylesheets
+    //include share/layout/_meta
+    title Green House - #{title || '绿色创想，智能，环保'}
+    block meta
 
-    script(src="/javascripts/mui/helper.js")
-  body
+    if meta.canonical
+      meta(name="canonical",content=meta.canonical)
+    meta(http-equiv="X-UA Compatible",content="IE=edge")
+    if req.use_mobile
+      meta(name="viewport",content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+      meta(name="apple-mobile-web-app-capable",content="yes")
+    else
+      //- optimize for ipad
+      meta(name="viewport",content="width=device-width,initial-scale=0.5,minimum-scale=0.5")
+
+    //ssi:start name="base_css" file="ssi/share/{locale}/base_css.html" output="share"
+    link(rel="shortcut icon" type="image/x-icon" href=image_path('icon/favicon.ico'))
+    <!--build:css  www.base.min.css -->
+    link(rel="stylesheet", href=stylesheet_path('bootstrap.css'),  media="all")
+    link(rel="stylesheet", href=stylesheet_path('base.css'), media="all")
+    link(rel="stylesheet", href=stylesheet_path('vender/fancybox/jquery.fancybox.css'))
+    <!--endbuild-->
+
+    <!--build:css  www.base.head.min.css -->
+    //link(rel="stylesheet", href=stylesheet_path('head/head-v1.css'), media="all")
+    <!--endbuild-->
+    //ssi:end
+
+    block styles
+
+    //ssi:start name="head_js" file="ssi/share/{device}/{locale}/footer.html" output="share"
+    script(src=javascript_path('libs/jquery/jquery_2.1.4.js'))
+    <!--[if lte IE 9]>
+    script(src=javascript_path("plugins/respond/respond.js"))
+    script(src=javascript_path("plugins/excanvas/excanvas.js"))
+    <![endif]-->
+    //ssi:end
+
+  body(class="green-#{req.locale || 'cn'} green-#{req.device}")
+    //- body 可以指定 每个页面不相同的配置，data-{cfg} = {value}, 可以覆盖 app-config中指定的配置
+    //ssi:start name="header" file="ssi/share/{device}/{locale}/header.html" output="share"
+    ul#app-config.hidden
+      li.dui-cfg(data-key="env",data-value="#{settings.env}")
+      li.dui-cfg(data-key="locale",data-value="#{req.locale}")
+      li.dui-cfg(data-key="lang",data-value="#{req.lang}")
+      li.dui-cfg(data-key="use_mobile",data-value="#{req.use_mobile}",data-type="Boolean")
+      li.dui-cfg(data-key="local_ip",data-value="#{req.local_ip}")
+      li.dui-cfg(data-key="domain",data-value="#{req.cookie_domain}")
+    //ssi:end
+
     block content
 
+    //ssi:start name="footer" file="ssi/share/{device}/{locale}/footer.html" output="share"
+    div#mask.hidden
+      div.load
+        img(src=image_path('share/loading.gif'),width="32px")
+        p.wait-msg
+      div.overlay
+    //ssi:end
+
+    //ssi:start name="base_js" file="ssi/share/{locale}/base_js.html" output="share"
+    <!--build:js dui.base.min.js -->
+    script(src=javascript_path('dui/config.js'))
+    script(src=javascript_path('dui/safe/xss.js'))
+    script(src=javascript_path('dui/core/core.js'))
+    script(src=javascript_path('dui/core/cookie.js'))
+    script(src=javascript_path('dui/api/base.js'))
+    script(src=javascript_path('dui/api/common.js'))
+    script(src=javascript_path('dui/helper.js'))
+    <!--endbuild-->
+
+    <!--build:js www.base.min.js -->
+    script(src=javascript_path('libs/modernizr.js'))
+    script(src=javascript_path('libs/bootstrap-js/bootstrap.min.js'))
+    script(src=javascript_path('plugins/fancybox/jquery.fancybox.js'))
+    <!--endbuild-->
+
+    //- ==== 是否启用监控
+    //if settings.monitor
+      //script(src=javascript_path("monitor/index.js"), async)
+
+    //- 百度统计
+    if settings.is_production
+      script.
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript async src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1d2856d63a5b58feec85966a07844866' type='text/javascript'%3E%3C/script%3E"));
+    //ssi:end
 
     block scripts
-    //- 百度统计
-    script.
-      var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-      document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1d2856d63a5b58feec85966a07844866' type='text/javascript'%3E%3C/script%3E"));
+
+
+

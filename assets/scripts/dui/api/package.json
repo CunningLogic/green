@@ -1,0 +1,15 @@
+{
+  "name": "dui-api",
+  "description": "dui api can make api more easy",
+  "version": "1.0",
+  "author": {
+    "name": "pan hong fei",
+    "email": "fei.pan@dji.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+      "dui":{
+        "core":"core.js"
+      }
+  }
+}

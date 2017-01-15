@@ -1,0 +1,62 @@
+.dji-pagination
+  color: #707473;
+  margin-bottom: 80px;
+  ul
+    display: inline-block;
+    cursor: pointer;
+  li
+    float: left;
+    cursor: pointer;
+    a,.current,.ellipse
+      display: block;
+      text-align: center;
+      line-height: 23px;
+      margin-right: 2px;
+      color: #6A6E6A;
+      border-radius: 2px;
+      height: 25px;
+      line-height: 25px;
+      width: 25px;
+
+    .current
+      background: $dji-blue;
+      color: #fff;
+    a:hover
+      color: #44a8f2;
+      cursor: pointer;
+      &.ipt-go
+        padding: 5px 2px 0;
+        width: 35px;
+        &:hover
+          background: none;
+        input
+          width: 30px;
+          height: 23px;
+          outline: none;
+          text-align: center;
+  .pagination-go
+    display: inline-block;
+    position: relative;
+    top: -7px;
+    cursor: pointer;
+    input
+      background-color: #f7f8f9;
+      border: medium none;
+      border-radius: 2px;
+      height: 25px;
+      margin: 0 11px;
+      outline: medium none;
+      text-align: center;
+      width: 50px;
+    button
+      position: relative;
+      top: 1px;
+      background: #fff;
+      border: 2px solid #44a8f2;
+      border-radius: 2px;
+      color: #44a8f2;
+      height: 25px;
+      width: 50px;
+      &:hover
+        color: #f7f8f9;
+        background-color: #44a8f2;

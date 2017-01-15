@@ -1,0 +1,17 @@
+style.
+ .fancybox-skin{
+   background: rgba(255, 255, 255, 0.7);
+ }
+
+.page.bestme-page.music-page
+  section.content.info
+    h1.top-title.title
+      | 年度最佳音乐
+
+    h2.title= music_title
+    .pictrue(style="background-image: url(#{music_cover})")
+      .top-shadow
+    .desc
+      P= music_desc
+    .action
+      a.fancybox.btn-listen(href=music_link) 我想听听

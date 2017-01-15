@@ -1,0 +1,6 @@
+{
+  "extends": "defaults/configurations/off",
+  "rules": {
+    "consistent-return": 0,
+  }
+}

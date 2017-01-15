@@ -1,0 +1,31 @@
+{
+  "name": "aws-lambda-image-pre-process",
+  "version": "0.0.1",
+  "description": "Process images that uploaded to s3, create series images with different format, compress level.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "release": "node ./utils/release",
+    "build": "zip ../release/image-pre-process.zip ../release/index.js ../release/utils ../release/lib ../release/node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DJISZ/DJI-Official.git"
+  },
+  "keywords": [
+    "aws-lambda",
+    "image"
+  ],
+  "author": "Abram",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DJISZ/DJI-Official/issues"
+  },
+  "homepage": "https://github.com/DJISZ/DJI-Official#readme",
+  "dependencies": {
+    "bluebird": "^3.4.0",
+    "fs-extra": "^0.30.0",
+    "mime-types": "^2.1.11",
+    "sharp": "^0.15.0"
+  }
+}

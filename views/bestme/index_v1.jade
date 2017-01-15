@@ -1,0 +1,119 @@
+extends ../layout
+
+block styles
+  style.
+   .bestme{
+     position: relative;
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+     font-family: SimSun;
+   }
+   .btn-circle{
+     margin: 40px auto 0px;
+     display: block;
+     width: 150px;
+     height: 150px;
+     color: #333;
+     border: 5px solid;
+     border-color: rgba(166, 213, 24, 0.1);
+     border-radius: 50%;
+
+     text-align:center;
+     background: #fff;
+     background: radial-gradient(rgba(166, 213, 24, 0.6), #fff);
+
+   }
+   @-webkit-keyframes breathe{
+     0% {
+        opacity: 0.8;
+        border-color: rgba(166, 213, 24, 0.6);
+        box-shadow: 0 1px 30px rgba(187, 187, 187, 1);
+     }
+     100% {
+        opacity: 1;
+        border-color: rgba(166, 213, 24, 0.1);
+        box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+     }
+   }
+
+   .blur{
+     filter: url(blur.svg#blur);
+     -webkit-filter: blur(5px) brightness(1);
+     -moz-filter: blur(5px) brightness(1);
+     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+   }
+   .bg{
+     background: rgb(45, 58, 59) url(images/bestme/bg-index-1.jpg) center;
+     background-size: cover;
+     filter: blur(9px);
+     height: 110%;
+     width: 110%;
+     position: absolute;
+     z-index: 0;
+     margin: -5%;
+   }
+   .content{
+     position: absolute;
+     z-index: 1;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     max-width: 360px;
+     /* background: radial-gradient(rgba(251, 80, 4, 0.6), #fff); 166, 213, 24*/
+     background: radial-gradient(rgba(253, 185, 216, 0.6), #fff);
+     margin: 10px auto;
+     padding: 15px;
+     border-radius: 5px;
+     color: #333;
+     border: 10px solid;
+     border-color: rgba(250, 250, 250, 0.5);
+     overflow: auto;
+     -webkit-overflow-scrolling : touch;
+   }
+   .sub-title{
+     margin: 10px 0 20px 0;
+   }
+   .tags{
+     margin-top: 10px;
+     text-align: center;
+   }
+
+block content
+  .page.bestme
+    .bg.blur
+    .content.container
+      h1.title
+       small 我是&nbsp;
+       span(style="color:#cc171c;") 潘宏飞
+      h3.sub-title 这一年，
+        br
+        | 我在一个春暖花开的地方，
+        br
+        | 蕴吸暖阳，稳稳生长...
+      p.desc
+        | 千里登顶梧桐山，苏风画扇游江南。
+        br
+        | 王城一峰独秀，梯田曲曲蜿蜒，
+        br
+        | 漓江清流，高铁已过万屏山...
+      .wrap
+        a.btn-circle(style="padding-top: 45px;", href=url('bestme/photo'))
+          span(style="font-size:16px;") 谁是我的?
+          br
+          span(style="font-size:26px;") 年度最佳
+        .tags
+          .tag 年度最佳 | 音乐
+          .tag 年度最佳 | 电影
+          .tag 年度最佳 | 图书
+          .tag 年度最佳 | 单身狗
+          .tag 年度最佳 | 搭档
+          .tag ...
+
+
+block scripts
+  //script(type="text/javascript", src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js")
+  script.
+    //$youziku.load(".content", "c23eab236fdb49fb80aab9d340743812", "STXingkai");
+    //$youziku.draw();

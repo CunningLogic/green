@@ -1,0 +1,73 @@
+.location-selector
+  position relative
+  display inline-block
+  z-index 100
+  .selector
+    position relative
+    display inline-block
+    width 200px
+    margin-right 20px
+  .holder
+    position relative
+    display block
+    padding 15px
+    padding-right 35px
+    overflow hidden
+    text-decoration none
+    text-transform uppercase
+    text-overflow ellipsis
+    white-space nowrap
+    color $gray
+    font-size 12px
+    border solid 1px rgba(151, 151, 151, .26)
+    border-radius 3px
+    &:hover, &:focus
+      .fa
+        color $gray
+        opacity 0.7
+    .fa
+      position absolute
+      right 15px
+      top 50%
+      margin-top -10px
+      color $dji-blue
+      font-size 17px
+  i.fa-spinner
+    position absolute
+    // right -15px
+    top 50%
+    margin-top -12px
+    font-size 20px
+    opacity .8
+  .dropdown-menu
+    position absolute
+    top 100%
+    left 0
+    width 100%
+    margin-top 5px
+    min-width 100%
+    max-height 260px
+    height auto
+    overflow-x hidden
+    overflow-y scroll
+    border-radius 30
+    background-color $gray-lighter
+    -webkit-overflow-scrolling touch
+    li a
+      display block
+      padding-bottom 12px
+      padding-top 12px
+      font-size 12px
+      color $gray-light
+      white-space normal
+      line-height 14px
+      &:hover
+        color #fff
+        background-color #b6b6b6
+  .scrollbar::-webkit-scrollbar
+    width 4px
+  .scrollbar::-webkit-scrollbar-track
+    background transparent
+  .scrollbar::-webkit-scrollbar-thumb
+    background #b6b6b6
+    border-radius 4px

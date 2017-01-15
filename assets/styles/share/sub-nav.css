@@ -1,0 +1,58 @@
+.nav_wrapper {
+    width: 100%;
+    position: relative;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E9E9E9;
+    z-index: 100;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.nav_wrapper.sticky {
+    position: fixed;
+    top: 0;
+    height: 60px;
+}
+
+.header_toggle {
+    background: url("/images/menu.png") no-repeat center center;
+    height: 20px;
+    width: 26px;
+    position: absolute;
+    top: 17px;
+    right: 47px;
+    text-indent: -9999px;
+    display: none;
+}
+
+.navigation {
+    float: left;
+    text-align: right;
+    width: 65%;
+    margin-left: 5%;
+}
+
+.navigation li {
+    float: left;
+    margin-left: 30px;
+}
+
+.navigation a {
+    text-transform: uppercase;
+    color: #747474;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 1.5em 1em;
+    display: block;
+}
+
+.button {
+    padding: 25px 45px;
+    text-align: center;
+    display: block;
+    margin: 10% 0% 0% 0%;
+}
+
+.button:hover {
+    opacity: 0.8;
+}

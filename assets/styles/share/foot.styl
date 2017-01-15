@@ -1,0 +1,174 @@
+.site-footer
+  background: #F7F8F9
+  padding: 0 0 30px
+  .link-list
+    margin-top: 30px
+    > a,span
+      display: block
+      // font-family: $font-opensans
+      font-weight: normal
+      font-size: 11px
+      color: #A6ACAA
+      line-height: 21px
+      &.title
+        // font-family: $font-opensans
+        font-weight: normal
+        font-size: 12px
+        color: #979797
+        line-height: 17px
+        margin-bottom: 18px
+        text-transform uppercase
+      &:hover
+        color: #44a8f2
+    >span
+      &:hover
+        color: #979797
+  .footer-meta
+    margin-top: 40px
+    .ad-desc
+      font-size 12px
+      text-align center
+      color #979797
+  .footer-logo
+    width: 183px
+  .footer-social
+    padding-left 0
+    text-align: right
+    .social-item
+      display: inline-block
+      margin-right: 10px
+      font-size: 18px
+      &:last-of-type
+        margin-right: 0
+    .fa
+      color: #6A6E6A
+    .social-icon
+      vertical-align: middle
+    .fa-youku
+      background: url('/images/common/youku.svg')
+      position: relative
+      top: 3px
+      width: 15px
+      height: 18px
+      background-size: 15px 18px
+    .fa-instagram2
+      background: url('/images/common/instagram.png')
+      position: relative
+      top: 2px
+      width: 16px
+      height: 16px
+      background-size: 16px 16px
+    .fa-wechat
+      width 16px
+      height 17px
+      line-height 20px
+      border-radius 2px
+      background-color #6a6e6a
+      color #f7f8f9
+      font-size 13px
+      text-align center
+    .fa-weibo
+      background-color #6a6e6a
+      color #f7f8f9
+      font-size 14px
+      width 16px
+      height 16px
+      line-height 18px
+      border-radius 2px
+      text-align center
+    .wechat-qr
+      position relative
+      &:focus:before
+        position absolute
+        bottom 35px
+        right 0
+        content ''
+        display block
+        width 170px
+        height 170px
+        background: url('/images/common/wechat-qr.jpg') center center no-repeat;
+        box-shadow 0 0 5px 1px #ccc
+  .footer-feedback,
+  .footer-copyright
+    text-align: center
+    // font-family: $font-opensans
+    font-weight: normal
+    font-size: 11px
+    color: #979797
+    min-height: 25px
+    // don't need thie any more
+    // line-height: 25px
+    line-height: 20px
+    a
+      text-decoration: underline
+      // color: #A6ACAA
+      color: #979797
+      display inline-block
+      &:hover
+        color: #44a8f2
+    font-size: 11px
+    color: #979797
+  .footer-feedback
+    a
+      color:  #44a8f2
+      margin-left: 5px
+
+#back-to-top
+  display none
+
+@media (max-width $screen-xs-max)
+  .site-footer
+    padding-top 30px;
+    .footer-feedback,
+    .footer-logo-wrap,
+    .footer-social,
+    .footer-copyright
+      text-align center
+      a
+        display inline-block
+    .footer-feedback
+      a
+        color:  #44a8f2
+        margin-left: 5px
+    .link-list
+      margin-bottom 20px
+      margin-top 0
+    .m-hide-list
+      display none
+      margin-top 20px
+    .link-list,.link-list .m-hide-list
+      > a,span
+        display: block
+        font-weight: normal
+        font-size: 11px
+        color: #A6ACAA
+        line-height: 21px
+        &.title
+          font-weight: normal
+          font-size: 12px
+          color: #979797
+          line-height: 17px
+          margin-bottom: 0
+  #back-to-top
+    display none
+    position fixed
+    right 7px
+    bottom 18%
+    z-index 9999
+    opacity 0.4
+    .fa
+      position absolute
+      display inline-block
+      color #707473
+      // font-size 23px
+      z-index 9999
+      top 50%
+      margin-top -15px
+      left 50%
+      margin-left -13px
+    .bg-cover
+      background-color #F7F8F9
+      border-radius 50%
+      width 20px
+      height 20px
+      z-index 9998

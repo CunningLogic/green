@@ -1,0 +1,949 @@
+@import '../share/mixins'
+@import '../bootstrap/variables'
+
+// font family
+.dji-en,.dji-zh-CN,.dji-de,.dji-zh-TW,.dji-fr,.dji-es
+  .site-header .navbar-nav .nav-link,.site-header .site-header-wrap .tab-hover > li > a
+    font-family: $font-gotham
+.dji-ko .site-header .navbar-form-search, .dji-ja .site-header .navbar-form-search
+  margin: 19px auto
+
+
+.tab-hover
+  .tab-nav
+    cursor: pointer
+  .tab-content
+    display: none
+  > li.active > .tab-content
+    display: block
+
+.tab-hover-content
+  position: absolute
+  top: 60px
+  left: 0
+  background: rgba(255, 255, 255, .98)
+  width: 100%
+  z-index: 500
+  > li
+    display: none
+    &.active
+      display: block
+
+.site-header
+  background-color: #fff
+  border: 0
+  margin: auto
+  position:relative
+  //覆盖site－header下dropdown-menu样式
+  .dropdown-menu
+    margin: 0
+    padding: 0
+    box-shadow: none
+    border: none
+    border-radius: 0
+  .site-header-container
+    margin-left: auto
+    margin-right: auto
+    max-width: 1230px
+    .aside
+      .product-pic
+        display inline-block
+        vertical-align middle
+  .navbar-header
+    height: 60px
+    line-height: 60px
+    .icon-bar
+      background-color: #707473
+    .navbar-toggle
+      padding-top: 13px
+      margin-right: 10px
+  .navbar-brand
+    display: block
+    margin-right: 12px
+    padding-right: 0
+    .logo
+      width: 50px
+      height: auto
+  .navbar-right
+    margin-right: 0
+  .navbar-nav
+    .nav-link
+      // font-family: $font-gotham
+      font-weight: 400
+      font-size: 12px
+      color: #979797
+      line-height: 30px
+      padding: 15px 10px
+      display: block
+      text-transform: uppercase
+      transition(color .2s ease-in-out)
+    > .nav-search
+      a
+        padding: 15px 25px 15px 10px
+        // font-family: $font-opensans
+        // margin-right 5px
+        font-weight: normal
+        font-size: 12px
+        color: #979797
+        line-height: 30px
+        cursor:hand
+        cursor:pointer
+        &:hover{
+         color:#44a8f2
+        }
+      .icon-header-search
+        vertical-align middle
+      // .icon-search
+      //   position: relative
+      //   top: 2px
+      //   cursor: pointer
+    > .nav-language
+      &.nav-language-clone
+        display none
+      position relative
+      // min-width 70px
+      min-width: 110px
+      .fa-angle-down
+        margin-left: 3px
+      .nav-link
+        flexbox()
+        justify-content(space-around)
+        align-items(center)
+      a
+        padding: 15px 15px 15px 15px
+        text-transform: uppercase
+        // font-family: $font-opensans
+        font-weight: normal
+        font-size: 12px
+        color: #979797
+        line-height: 30px
+        text-align center
+      .dropdown-menu
+        left: 0
+        text-align: left
+        min-width 105px
+        a
+          padding-left: 30px
+          text-transform: uppercase
+          text-align left
+    > .nav-shopping-cart
+      min-width: 162px
+      text-align: center
+      position: relative
+      .nav-link
+        padding: 15px 10px
+        text-align center
+        text-transform: uppercase
+        // font-family: $font-gotham
+        font-weight: 400
+        font-size: 12px
+        color: #f7f8f9
+        line-height: 30px
+        background-color: $dji-blue
+        transition: all 300ms
+        // &:hover
+        //   background: transparent
+        //   color: $dji-blue
+        //   .icon-header-cart
+        //     display: none
+        //   .icon-header-cart-blue
+        //     display: inline-block!important
+        //   .count
+        //     background: $dji-blue
+        //     color: #fff
+        .icon
+          margin-left: 8px
+          position: relative
+          top: 2px
+        .count
+          margin-left 5px
+          display inline-block
+          width 20px
+          height 20px
+          border-radius 100%
+          background-color $gray-lighter
+          color $dji-blue
+          // font-family $font-opensans
+          font-weight normal
+          font-size 12px
+          line-height 20px
+          text-align center
+      .dropdown-menu
+        width: 320px
+        font-size: 12px
+        background: transparent
+        border-top: none
+        .product-list
+          max-height: 394px
+          overflow-y: auto
+          &::-webkit-scrollbar
+            width: 4px
+          &::-webkit-scrollbar-track
+            background: #fff
+          &::-webkit-scrollbar-thumb
+            background: #707473
+            border-radius: 4px
+          li
+            overflow: hidden;
+            background: rgba(255, 255, 255, 1);
+            // color: #fff
+            color: $dji-blue
+            a.product-wrap
+              line-height: inherit;
+              display: block;
+              padding: 20px;
+              height: auto;
+              background: rgba(255, 255, 255, 1);
+              overflow: hidden;
+              opacity: 1;
+              &:hover
+                background: #f7f8f9
+                // background: rgba(255, 255, 255, 0.95);
+                // color: $dji-blue;
+                color: $gray
+            .photo
+              float: left
+            .text
+              .cost
+                margin-top: 8px;
+              margin-left: 115px;
+              padding-top 10px
+
+        .meta
+          overflow: hidden;
+          // background: rgba(68, 168, 242, 0.95);
+          background: rgba(255, 255, 255, 1);
+          padding: 15px 20px;
+          .total
+            float: left;
+            width: 120px;
+            display: inline-block;
+            color: $dji-blue;
+            margin-top: 5px;
+            font-size: 13px;
+          .checkout
+            float: right;
+            display: inline-block;
+            border: 2px solid $dji-blue
+            padding: 4px 8px;
+            line-height: inherit;
+            height: auto;
+            color: #fff;
+            background: rgba(68, 168, 242, 1);
+            transition(all .3s ease)
+            &:hover
+              color: $dji-blue;
+              border-color: rgba(68, 168, 242, 1);
+              background-color #fff
+    > .nav-user,
+    > .nav-account
+      text-align: right
+      // min-width: 85px
+      min-width: 45px
+    > .nav-account
+      .icon-header-account
+        vertical-align middle
+      .icon-account
+        display inline-block
+        width 23px
+        height 23px
+        vertical-align middle
+    > .nav-account,
+    > .nav-user
+      position relative
+      text-align: right
+      display: none
+      .nav-link
+        padding: 15px 0;
+      .headshot
+        display: inline-block
+        width: 28px
+        height: 28px
+        border-radius: 100%
+        vertical-align: middle
+        margin-left: 6px
+        img
+          border-radius 100%
+          width 100%
+          height 100%
+      .dropdown-menu
+        right: -20px
+        left: initial
+        min-width: 100%
+        width: auto;
+        li
+          float none
+        a
+          padding-left: 20px
+          padding-right: 20px
+    &.logined
+      .nav-account
+        display: none
+      .nav-user
+        display: block
+    > .nav-account
+      display block
+      text-align: right
+      .login,.register,.sep
+        // font-family: $font-opensans
+        font-weight: normal
+        font-size: 12px
+        color: #979797
+        line-height: 30px
+      .login,.register
+        padding: 15px 0
+        display: inline-block
+        text-transform: uppercase
+        &:hover
+          text-decoration: underline;
+
+
+
+  //多级下拉菜单 tab-hover
+  .site-header-wrap
+    // padding-left: 90px
+    display:block
+    position: absolute
+    top: 60px
+    left: 0
+    width: 100%
+    overflow: hidden
+    max-height: 0
+    height: 250px
+    opacity: 0
+    transition: opacity 500ms
+    background-color #fff
+    &.tab-content-opened
+      opacity: 1
+      max-height: 300px
+    > li
+      position: relative
+    .tab-hover
+      position: relative
+      margin-left: 86px
+      width: 246px
+      height: 223px
+      background-color: transparent
+      &.dropdown-opened
+        > li
+          &.active
+            > a
+              color: rgba(112, 116, 115, 1)
+          > a
+            color: rgba(112, 116, 115, .3)
+      > li
+        > a
+          display: block
+          line-height: 19px;
+          padding-top: 8px;
+          padding-bottom: 8px;
+          // background: #fff
+          // font-family: $font-gotham
+          font-weight: 400
+          font-size: 11px
+          color: #9B9B9B
+          position: relative
+          text-transform: uppercase
+          transition(color .2s ease-in-out)
+        &.active .tab-content
+          z-index: 1
+          opacity: 1
+          display block
+          .product-name,
+          .product-links,
+          .product-pic,
+          .product-buy
+            opacity: 1
+      .tab-content
+        position: absolute
+        left: 100%
+        top: 0
+        bottom: 0
+        padding-top: 18px
+        width: 860px
+        display: block
+        z-index: -1
+        opacity: 0
+        display none
+        li, div
+          padding: 0
+        .product-nav,
+        .product-pic,
+        .product-buy
+          float: left
+        //.product-name,
+        //.product-links,
+        //.product-pic,
+        //.product-buy
+        //  transition: all 500ms
+        //  opacity: 0
+        //.product-name
+        //  transition-delay: 100ms
+        //.product-links
+        //  transition-delay: 300ms
+        //.product-pic
+        //  transition-delay: 500ms
+        //.product-buy
+        //  transition-delay: 700ms
+        //product-nav
+        .product-nav
+          position relative
+          .product-name
+            a
+              display inline-block
+              font-family: $font-dji
+              font-weight: 600
+              font-size: 30px
+              color: #707473
+              line-height: 35px
+              text-transform uppercase
+              i
+                display block
+            &.product-name-manifold a
+              font-size: 28px;
+              line-height: 26px;
+
+          .product-links
+            margin-top: 14px
+            a
+              // font-family: $font-opensans
+              font-weight: normal
+              font-size: 12px
+              color: #979797
+              line-height: 22px
+              text-transform: uppercase
+              &:hover
+                text-decoration: underline
+
+          .product-links-list
+            width 205px
+            height auto
+            margin-top 0
+            margin-left 0
+            position static
+            .tab-content
+              display none
+            .link-pic
+              float left
+              max-width 360px
+              width 360px
+              height auto
+              padding-top 0
+              a
+                display block
+                img
+                  display block
+                  width 320px
+            + .aside
+              width 340px
+              right auto
+              left 205px
+            &.dropdown-opened
+              li
+                a.link-name
+                  color: rgba(112, 116, 115, .3)
+                &.active a.link-name
+                  color: rgba(112, 116, 115, 1)
+                &.active .tab-content
+                  display block
+            &.dropdown-opened
+              + .aside
+                display none
+
+
+        .product-nav-and-pic
+          width: 566px
+          float: left
+        //product-pic
+        .product-pic
+          width: 100%
+          a
+            display block
+          &.product-pic-manifold a
+            position: relative;
+            top: 40px;
+          img
+            margin-left: 0
+            margin-right: 0
+        .product-mutl-pics
+          overflow hidden
+          .product-pic
+            width auto
+            float left
+
+        .product-nav + .product-pic
+          width: 372px
+          img
+            display: block
+            margin-left: auto
+            margin-right: auto
+            max-width: 100%
+            width: 320px
+        .product-buy
+          margin-top: 96px
+        .btn-buy-primary
+          min-width: 162px
+          text-align: center
+          background: $dji-blue
+          // font-family: $font-opensans
+          padding: 4px
+          border: 2px solid transparent
+          font-weight: normal
+          font-size: 12px
+          color: #FFF
+          height: 36px
+          line-height: 24px
+          border-radius: 0
+          text-transform: uppercase
+          &:hover
+            transition: all 300ms
+            border: 2px solid $dji-blue
+            background-color: transparent
+            color: $dji-blue
+    .tab-hover + .aside
+      position: absolute
+      top: 0
+      left: 400px
+      height: 100%
+      right: 0
+      display: flex
+      vertical-align: middle
+      align-items: center
+      a
+        display inline-block
+    .dropdown-opened + .aside
+      display: none
+  .dropdown-opened .site-header-wrap
+    max-height: 250px
+    transition: none
+
+  .active .site-header-wrap
+    max-height: 250px
+    opacity: 1
+    z-index: $z-index1
+    //background-color: rgba(255, 255, 255, .98)
+    background-color: rgb(255, 255, 255)
+    .site-header-container
+      position:relative
+
+  .dropdown-opened .active .site-header-wrap
+    transition: none
+  .tab-content-first-opened .active .site-header-wrap
+    transition: all 500ms
+  .tab-content-closing .site-header-wrap
+    transition: all 500ms
+    max-height: 0
+    > .site-header-container
+      position relative
+  //.tab-content-first-opened
+  //单级白色下拉菜单
+  .dropdown-white
+    .dropdown-menu
+      min-width: 100%
+      display: block
+      max-height: 0
+      overflow: hidden
+      opacity: 0
+      transition: all 500ms
+      a
+        padding: 0
+        line-height: 36px
+        height: 36px
+        font-family: $font-opensans
+        font-weight: normal
+        font-size: 12px
+        color: #979797
+        background-color: rgba(255, 255, 255, 0.7)
+        .flag
+          opacity 1 !important
+        &:hover
+          color: #FFFFFF
+          background-color: rgba(151, 151, 151, 0.7)
+          // opacity: 0.7
+          .flag
+            opacity 1
+    &.open .dropdown-menu,
+    &.active .dropdown-menu
+      max-height: 500px
+      opacity: 1
+      visibility visible
+  //菜单打开时 透明度改变
+  .navbar-menu.dropdown-opened > li
+    .nav-link
+      color: rgba(112, 116, 115, .3)
+    &.active .nav-link
+      color: rgba(112, 116, 115, 1)
+  //切换form－search显示
+  .navbar-form-search
+    margin: 18px auto
+    padding: 0
+    width: 156px
+    position:relative
+    display: none
+    .input-search
+      padding: 4px 20px
+      border: 0
+      border-left: 1px solid rgba(166, 172, 170, 0.5)
+      border-radius: 0
+      outline: none
+      box-shadow: none
+      height: 24px
+      line-height: 14px
+      // font-family: $font-gotham
+      font-weight: normal
+      font-size: 13px
+      color: #707473
+    .btn-search
+      position: absolute
+      right: 5px
+      top: -2px
+      color: #A2A6A5
+  .navbar-searching
+    .navbar-form-search
+      display: block
+    .navbar-menu
+      display: none
+
+.search-push-box
+  display none
+  background: #fff;
+  margin: 0 40px;
+  position: absolute;
+  z-index: 10000000;
+  width: 600px;
+  top: 42px;
+  left: -41px;
+  padding 0 35px
+  font-weight 300
+  box-shadow: 0px 5px 30px 0px #eee;
+  h3
+    font-size 12px
+  ul
+    margin-top: 8px;
+    li
+      font-size 14px
+      a
+        display block
+        padding-left 15px
+        height 30px
+        line-height 30px
+      i
+        display inline-block
+        margin-right 5px
+        color $dji-blue
+        font-size 12px
+      &:hover 
+        background-color #f7f8f9
+      &.active
+        background-color #f7f8f9
+  .search-item
+    padding-top 15px
+    padding-bottom 15px
+    &:last-child
+      border-bottom none
+  .hot-words
+    display none
+  .marketing-words
+    border-top 1px solid #d6d6d6;
+
+@media (max-width: 767px)
+  //bootstrap navbar-collapse在1199时折叠
+  //在phantom－3页sub－nav－wrap也使用
+  .navbar-lg
+    .navbar-header
+      float: none
+    .navbar-toggle
+      display: block
+    .navbar-collapse
+      border-top: 1px solid transparent
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1)
+    .navbar-collapse.collapse
+      display: none !important
+    .navbar-nav
+      float: none !important
+      margin: 0 -15px
+    .navbar-nav > li
+      float: none
+    .navbar-nav > li > a
+      padding-top: 10px
+      padding-bottom: 10px
+    .navbar-text
+      float: none
+      margin: 15px 0
+    .navbar-collapse.collapse.in
+      display: block !important
+    .collapsing
+      overflow: hidden !important
+    .dropdown-menu,
+    .tab-content-submenu
+      display: none
+  .nav-user
+    display none;
+
+  @media (max-width: 767px)
+    body
+      padding-top 54px
+    .site-header
+      position fixed
+      left 0
+      top 0
+      right 0
+      z-index $z-index2
+      .nav-bar-wrap
+        box-shadow: 0px 10px 15px 0px rgba(112,116,115,0.20);
+        overflow auto
+        -webkit-overflow-scrolling: touch;
+        max-height 90%;
+        max-height calc(100vh - 54px);
+      .navbar-header
+        height: 54px
+        line-height: 54px
+        .navbar-brand
+          padding: 12px 15px 12px 5px
+        .navbar-toggle
+          float left
+          padding: 10px
+          width: 38px
+          margin: 9px 0 9px 10px
+          .icon-bar
+            width: 16px
+            background: #6A6D69
+            + .icon-bar
+              margin-top: 4px;
+        .navbar-toggle-site-header
+          margin-right 5px
+          .icon-bar
+            transition(all .4s)
+            &:nth-child(2)
+              opacity 0
+            &:first-child
+              transform matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 6)
+            &:last-child
+              transform matrix(0.707107, -0.707107, 0.707107, 0.707107, 0, -6)
+          &.collapsed
+            .icon-bar
+              transform none !important
+              opacity 1 !important
+      .navbar-nav .nav-link,
+      .dropdown-opened > li .nav-link,
+      .dropdown-opened > li.active .nav-link,
+      .site-header-wrap .tab-hover > li > a,
+      .site-header-wrap .tab-hover.dropdown-opened > li > a,
+      .navbar-nav > .nav-language a,
+      .navbar-nav > .nav-language .dropdown-menu a,
+      .navbar-nav > .nav-user a,
+      .navbar-nav > .nav-user .dropdown-menu a,
+      .site-header-wrap .tab-hover > li > a
+        color: #707473
+        font-size 13px
+        font-weight 300
+        line-height 30px
+      .navbar-nav.navbar-right
+        margin-top: 0
+      .navbar-nav .nav-link,
+      .navbar-nav > .nav-shopping-cart .nav-link,
+      .navbar-nav > .nav-language .nav-link,
+      .navbar-nav > .nav-language .dropdown-menu a,
+      .navbar-nav > .nav-user a,
+      .navbar-nav > .nav-user .dropdown-menu a,
+      .site-header-wrap .tab-hover > li > a
+        padding: 3px 20px
+      .navbar-nav  li.mobile-sub-nav-first > a
+        padding-top 7px
+      .navbar-nav  li.mobile-sub-nav-last > a
+        padding-bottom  13px
+      .navbar-nav > .nav-language .nav-link
+        justify-content(center)
+        text-align center
+        height: 48px;
+        line-height: 48px!important;
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size 11px!important
+        color #707473!important
+        background-color #F7F8F9
+        // font-family $font-opensans
+      .navbar-nav > .nav-shopping-cart
+        background: transparent
+        width: 100%
+        .nav-link
+          font-weight 300
+          text-align: center
+          color: #fff
+          height: 48px
+          line-height: 48px
+          padding-top: 0
+          padding-bottom: 0
+          font-size 15px
+          &.nav-link-store
+            color: #fff !important;
+            font-size: 15px !important;
+            line-height: 48px !important;
+          .icon-header-cart
+            margin-left: 16px
+            position: relative
+            top: 2px
+            font-weight 300
+          .count
+            font-size 12px
+            font-weight normal
+      .navbar-nav > .nav-user
+        overflow hidden
+        display none !important
+        .nav-link
+          text-align center
+        .dropdown-menu
+          background #f7f8f9
+          position: static;
+          left: 0;
+          right: 0;
+          li:first-of-type
+            padding-top 10px
+          li:last-of-type
+            padding-bottom 10px
+          a, a:hover
+            background transparent
+            opacity 1
+      .navbar-nav > .nav-account
+        display: none
+        width: 100%
+        text-align: center
+        background-color #FFFFFF
+        border-radius 0
+        .login,.register
+          font-size 11px
+          height: 54px;
+          line-height: 54px;
+          padding: 0;
+      .nav-search
+        display: none!important
+      .navbar-nav > .nav-language
+        display none
+        &.nav-language-clone
+          display block
+        a
+          // font-family $font-gotham
+        .fa-angle-down
+          font-size: 26px;
+          color: #979797;
+          position: absolute;
+          right: 20px;
+          top: 10px;
+        .tab-content
+          background: $gray-lighter
+          position static
+          float none
+          opacity 1
+          li:last-of-type a
+            padding-bottom 13px
+            height auto
+          li:last-child
+            padding-bottom 45px
+          a,a:hover
+            // font-family $font-gotham
+            opacity 1
+            background: $gray-lighter
+
+      //display: none!important
+      .site-header-wrap
+        position: static
+        height: auto
+        .tab-content,.aside
+          display: none !important
+        .tab-hover
+          height:auto
+          width 100%
+          margin: auto
+        .tab-nav
+          position static
+        .tab-content
+          &.tab-nowrap
+            display block !important
+            position static
+            padding-top 0
+            .product-nav-and-pic
+              float none
+            .product-nav
+              float none
+              .product-name
+                display none
+              .product-links-list
+                width 100%
+                height auto
+                position static
+                padding-top 5px
+                padding-bottom 5px
+                li a
+                  padding-left 40px
+                .tab-content
+                  display none !important
+                &.dropdown-opened
+                  li
+                    a.link-name
+                      color: #707473
+
+      .tab-nowrap
+        max-height 0 !important
+        transition all 500ms
+        overflow hidden
+      .dropdown-opened .dropdown-opened .active .tab-nowrap
+        max-height 350px !important
+
+      .dropdown-opened .site-header-wrap
+        max-height: 0!important
+        background: $gray-lighter
+        transition: all 500ms
+      .dropdown-opened .active .site-header-wrap
+        padding: 10px 0 !important
+        transition: all 500ms
+      .dropdown-opened .active .site-header-wrap
+        max-height 375px !important
+      .navbar-menu.dropdown-opened > li .nav-link
+        color rgb(112,116,115)
+    .site-header
+      .pure-menu
+        .site-header-wrap
+          width auto
+          height auto
+          left initial
+          margin 0
+          .tab-hover
+            width auto
+            height auto
+            margin 0
+            li
+              &:hover
+                color #707471 !important
+                background-color #f7f8f9
+                a
+                  color #707471 !important
+              a
+                padding 3px 20px
+                font-size 13px
+                color #707471 !important
+
+.site-header
+  .pure-menu
+    .site-header-wrap
+      width auto
+      height auto
+      left auto
+      margin-left -5px
+      .tab-hover
+        width auto
+        height auto
+        margin 0
+        li
+          &:hover
+            color #fff !important
+            background-color #979797
+            opacity 0.7
+            a
+              color #fff !important
+          a
+            padding-left 16px
+            padding-right 16px
+            font-size 12px
+            color #979797 !important
+            transition initial
+

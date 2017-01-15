@@ -1,0 +1,128 @@
+@import '../bootstrap/variables'
+@import '../share/mixins'
+
+.form-group
+  position: relative
+  margin-bottom: 20px
+  input[type="text"],
+  input[type="number"],
+  input[type="tel"]
+    -webkit-appearance: none
+    display: block
+    width: 100%
+    padding: 5px 0
+    border: none
+    border-bottom: 1px solid #979797
+    font-size: 12px
+    outline: none
+    color: #707473
+    &:focus, &:active
+      outline: none
+    &.error
+      border-bottom-color: #ECA5A5
+  label.error
+    color: #E08383
+    font-size: 12px
+    padding: 2px 4px
+    margin: 0 0
+    position: absolute
+    right: 0
+    top: 28px
+  textarea
+    -webkit-appearance: none
+    display: block
+    width: 100%
+    padding: 5px 0 5px 8px
+    border: none
+    border-bottom: 1px solid #979797
+    font-size: 12px
+    outline: none
+    color: #707473
+    height: 24px
+    transition(all .3s ease)
+    &:focus, &:active
+      outline: none
+      height: 100px
+    &.error
+      border-bottom-color: #ECA5A5
+  .btn-action
+    display: inline-block;
+    text-align: center;
+    padding: 11px 20px
+    margin: 0 0 20px 20px
+    min-width: 178px
+    background: #44A8F2
+    border: 1px solid #44A8F2
+    color: #fff
+    // font-family: $font-gotham
+    font-size: 17px
+    font-weight: 400
+    text-transform: uppercase
+    text-decoration: none
+    border-radius 2px
+    transition(all .3s ease)
+    &:focus
+      text-decoration: none
+    &:active, &:hover
+      outline: none
+      text-decoration: none
+      border-color: #44a8f2
+      background: #Fff
+      color: #44a8f2
+    &.btn-small
+      min-width: 145px
+      padding: 10px 12px
+      font-size: 14px
+
+  .btn-cancel
+    display: inline-block;
+    text-align: center;
+    padding: 11px 20px
+    margin: 0 0 20px 20px
+    min-width: 178px
+    background: #fff
+    border: 1px solid #979797
+    color: #979797
+    // font-family: $font-gotham
+    font-size: 17px
+    font-weight: 400
+    text-transform: uppercase
+    transition(all .3s ease)
+    text-decoration: none
+    &:focus
+      text-decoration: none
+    &:active, &:hover
+      outline: none
+      text-decoration: none
+      color: #fff
+      background: #DEDEDE
+      border-color: #dedede
+    &.btn-small
+      min-width: 145px
+      padding: 10px 12px
+      font-size: 14px
+
+select.dropdown::-ms-expand
+  display: none;
+select.dropdown
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative
+  margin-right: 5px
+  border: none
+  background: #fff
+  color: #999
+  cursor: pointer
+  font-size: 12px;
+  &:active, &:focus
+    outline: none
+select.dropdown + .fa-caret-down
+  font-size: 20px
+  vertical-align: top
+  margin-left: 5px
+  color: #d7d7d7
+
+@import "./form.mobile"

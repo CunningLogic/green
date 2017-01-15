@@ -1,0 +1,35 @@
+@import '../bootstrap/variables'
+@import '../share/mixins'
+
+.modal.modal-common
+  .modal-dialog
+    color $gray
+    margin-top 100px
+  .modal-content
+    border-radius 0
+  .modal-header
+    text-align center
+    border-bottom none
+    .modal-logo
+      display block
+      margin-bottom 25px
+      width 38px
+    .modal-title
+      text-transform uppercase
+      font-size 18px
+      font-weight 500
+  .modal-body
+    padding 20px
+    padding-bottom 30px
+    
+@media (max-width $screen-xs-max)
+  .modal.modal-common
+    .modal-dialog
+      margin-top 80px
+    .modal-content
+      border-radius 0
+    .modal-header
+      .modal-title
+        font-size 16px
+    .modal-body
+      padding 15px

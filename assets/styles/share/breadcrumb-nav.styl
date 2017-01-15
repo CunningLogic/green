@@ -1,0 +1,40 @@
+@import '../bootstrap/variables'
+
+.breadcrumb-nav
+  background: #f7f8f9
+  padding: 52px 0
+  .title
+    color: #44a8f2
+    margin-bottom: 5px
+    text-transform: uppercase
+    // font-family: $font-gotham
+    font-weight: 300
+    font-size: 36px
+    .parent
+      display: inline-block
+      color: #707473
+      margin-right: 14px
+  .breadcrumb
+    padding: 0
+    margin: 0
+    background: none
+    color: #707473
+    text-transform: capitalize
+    font-weight: 300
+    font-size: 12px
+    padding-left 3px
+    a
+      color: #707473
+      &:hover
+        color: #44a8f2
+    > li + li:before
+      color: #707473
+      padding: 0 3px 0 6px
+    br
+      display none
+      
+// @media (max-width: $screen-md)
+//   .breadcrumb-nav
+//     .title
+//       .parent
+//         display: block

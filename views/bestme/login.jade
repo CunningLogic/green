@@ -1,0 +1,23 @@
+extends ../layout
+
+block styles
+  <!--build:css  home/home.v1.min.css-->
+  link(href=stylesheet_path('bestme/login.css'), media="all", rel="stylesheet")
+  <!--endbuild-->
+
+block content
+  .page.login-page
+    form.login-form#login-form(action="/api/bestme/login", method="POST")
+      h3.title 分享你的年度最佳
+      input.code-text.form-control(name="invite_code", type="text", placeholder="请填入邀请码", value=invite_code)
+      .controls
+        button.btn.btn-success.form-control(type="submit") 开启 拾光之旅
+      if is_invalid_user
+        .msg.text-danger 你输入的是无效的邀请码, 请检查
+
+
+
+block scripts
+  //script(src=javascript_path('bus/bestme/editor.js'))
+
+

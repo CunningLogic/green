@@ -1,0 +1,21 @@
+extends ../layout
+
+block styles
+  <!--build:css  home/home.v1.min.css-->
+  link(href=stylesheet_path('bestme/users.css'), media="all", rel="stylesheet")
+  <!--endbuild-->
+
+block content
+  .page.users-page
+    form#users-form(action="/api/bestme/user?from=admin", method="POST")
+      textarea.textarea#usersJson
+        = JSON.stringify(data, null, 2)
+      .control
+        button.btn.btn-success.pull-left(type="submit", style="margin-right:10px;") 创建用户
+        button.btn.btn-info.pull-left(type="submit") 更新用户
+
+
+block scripts
+  //script(src=javascript_path('bus/bestme/editor.js'))
+
+

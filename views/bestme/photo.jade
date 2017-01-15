@@ -1,0 +1,16 @@
+.page.photo-page
+  .list#top-photos-swiper.swiper-container
+    .parallax-bg(style="background-image:url(/images/bestme/bg-wood.jpg)",data-swiper-parallax="-23%",data-swiper-parallax-duration="1000")
+    .swiper-wrapper
+      each top,index in [3, 2, 1]
+        .item.swiper-slide(style="z-index=#{top}")
+          .parallax-warpper(data-swiper-parallax="-100")
+            h1.title TOP #{top}
+            .photo
+              - var title = locals["photo_title_" + index];
+              - var imgSrc = locals["photo_picture_" + index];
+              img(src=imgSrc, width="100%")
+            p.desc
+              b.desc-title 年度最佳照片：【#{title}】
+              br
+              != locals["photo_desc_" + index]

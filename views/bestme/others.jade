@@ -1,0 +1,25 @@
+//- link(rel="stylesheet" href=javascript_path('plugins/animsition/css/animsition.min.css'))
+
+.page.bestme-page.others-page
+  ul#top-list
+    each top, index in [3, 2, 1]
+      - title = locals['others_title_' + index] || ''
+      - imgSrc = locals['others_picture_' + index]
+
+      li.page.top-item
+        .bg-wrap
+          canvas.canvas-bg(style="width:100%; height: 100%;")
+          img.hidden.bg-img(src=image_path('bestme/p1.jpg'))
+        .content
+          h3.title
+            - matches = title.match(/#(.*)#(.*)/);
+            big.logo
+             | 2016 年度最佳：
+             = matches && matches[1]
+            br
+            = matches && matches[2]
+          .picture
+            if imgSrc
+              img(src=imgSrc, width="100%")
+          .desc
+            p= locals['others_desc_' + index]

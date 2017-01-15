@@ -1,0 +1,3 @@
+  {
+    "ignore": [".tmp/", ".git/", "build/", "assets/",  "app.js", "data/"]
+  }

@@ -1,0 +1,84 @@
+.photo-page{
+  height: 100%;
+  line-height: 26px;
+  overflow: hidden;
+  position: relative;
+
+  .blur{
+    filter: url(blur.svg#blur);
+    -webkit-filter: blur(5px) brightness(1);
+    -moz-filter: blur(10px) brightness(1);
+    //filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+  }
+  .bg{
+    background-size: cover;
+    height: 110%;
+    width: 110%;
+    position: absolute;
+    z-index: 0;
+    margin: -5%;
+    opacity: 1;
+  }
+
+  .bestme-page{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 400px;
+    padding: 0px 0px;
+  }
+  .item{
+    //position: absolute;
+    height: 100%;
+    width: 100%;
+    //background: #7e6346 url(/images/bestme/bg-wood.jpg) center;
+    background-size: cover;
+  }
+
+  .photo{
+    overflow: hidden;
+    position: absolute;
+    max-height: 96%;
+    border-radius: 2px;
+    border: 10px solid #fff;
+    top: 50%;
+    transform: translateY(-50%) rotate(2deg);
+    -webkit-transform: translateY(-50%) rotate(2deg);
+    background: rgba(169, 155, 155, 0.9);
+    left: 20px;
+    right: 20px;
+  }
+  .photo img{
+    vertical-align: middle;
+    min-height: 200px;
+  }
+
+  .desc, .title{
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+  }
+  .title{
+    top: 0;
+    bottom: auto;
+    text-align: center;
+    color: #d4b050;
+  }
+  .desc{
+    max-height: 132px;
+    overflow: hidden;
+  }
+  .desc-title{
+    color: #d4b050;
+  }
+}

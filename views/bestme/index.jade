@@ -1,0 +1,39 @@
+extends ../layout
+
+block styles
+  link(href=javascript_path('plugins/swiper/swiper.min.css'), media="all", rel="stylesheet")
+  link(href=stylesheet_path('bestme/index.css'), media="all", rel="stylesheet")
+
+block content
+  .bestme-pages.container
+    #page-swiper.swiper-container
+      .parallax-bg(style="background-image:url(/images/bestme/bg-home.jpg)",data-swiper-parallax="-23%",data-swiper-parallax-duration="1000")
+      .swiper-wrapper
+        .swiper-slide#index(data-index=0)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include home
+        .swiper-slide#transition-photo(data-index=1)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include transition-photo
+        .swiper-slide#photo(data-index=2)
+           include photo
+        .swiper-slide#transition-music(data-index=3)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include transition-music
+        .swiper-slide#music(data-index=4)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include music
+        .swiper-slide#others(data-index=5)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include others
+
+
+block scripts
+  script(src=javascript_path('plugins/pageSwitch/pageSwitch.js'))
+  script(src=javascript_path('plugins/stackblur/stackblur.js'))
+  script(src=javascript_path('plugins/swiper/swiper.jquery.min.js'))
+  script(src=javascript_path('bus/bestme/index.js'))
+  //script(type="text/javascript", src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js")
+  //script.
+    //$youziku.load(".content", "c23eab236fdb49fb80aab9d340743812", "STXingkai");
+    //$youziku.draw();
