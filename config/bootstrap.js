@@ -29,7 +29,7 @@ module.exports.bootstrap = function (app, cb) {
     type: 'Koa 2',
     isNode: true,
     viewPath: app.basePath + '/' + settings.view_src || 'views',
-    keys: ['0266d0567aef9b7ab3bc4eb1eadegr68']
+    keys: [settings.app_key]
   });
 
   //====== 扩展配置项 settings

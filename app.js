@@ -1,5 +1,5 @@
 /**
- * dji-official
+ * green house
  * app.js base on koa 2
  *
  * with koa we should add views
