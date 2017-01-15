@@ -20,7 +20,7 @@ module.exports.application = _.assign({
 
   },
   api:{
-    query:{
+    dji_lang:{
       method:'**',
       url:"***"
     }
