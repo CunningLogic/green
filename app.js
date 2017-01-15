@@ -1,5 +1,5 @@
 /**
- * green house
+ * green
  * app.js base on koa 2
  *
  * with koa we should add views
@@ -64,7 +64,7 @@ console.log('<<<<<< babel transform end.');
 let app = new Koa(); //启动服务
 Object.assign(app, {
   name: 'dji-official',
-  keys: [settings.keys['app_key']], //session & cookie keys
+  keys: [], //session & cookie keys 启动后设置
   basePath: process.cwd(),
   proxy: true
 });
