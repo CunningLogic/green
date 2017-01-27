@@ -11,13 +11,13 @@ module.exports = function (util) {
   //===== 如果不进行 ddos 限制，则直接到下一个中间件
   return async function redirect_v1(ctx, next){
     let res = ctx.response;
-    ctx.status = 102; //processing
+    //ctx.status = 102; //processing
 
     await next(); //first process next, finally redirect v1
 
     //====== 根据 status判断，请求是否已经被处理过，if not => old site
-    if(res.redirect_404 && ctx.status === 102){
-      console.log('redirect_v1');
+    if(res.status >= 400 && res.redirect_404){
+      console.log('redirect_404');
       res.redirect_404('config/http');
     }
   }

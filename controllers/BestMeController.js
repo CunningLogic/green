@@ -13,8 +13,10 @@ module.exports = {
   pages: async function (pageId) {
     let req = this.request,
         res = this.response,
+        query = req.query,
         util = req.helper,
         key = settings.keys['app_key'],
+        invite_code = this.cookies.get('sign_code'),
         userId = '';
 
     try{
@@ -23,16 +25,29 @@ module.exports = {
       return res.redirect_404();
     }
 
+
     if(pageId && JsonDB.hasCollection(`Bestme:${userId}`)){
       userId = util.RC4.unlock(key, pageId);
+
       let userData = await JsonDB.find(`Bestme:${userId}`).data[0] || {},
-          data = Object.assign(userData, {userPageId: pageId});
+          data = Object.assign(userData, {
+            title: '谁是我的年度最佳？',
+            userId: userId,
+            userPageId: pageId,
+            canEdit: ('edit' in query) && userId === invite_code
+          });
+      Object.keys(data).forEach(function (key) {
+        if(key.has('picture') && !userData[key].has('cdn.15ba.cn')){
+          data[key] = req.helper.qbox_cdn(data[key]);
+        }
+      });
 
       await this.render_view('bestme/index', data);
     }else{
       return res.redirect_404();
     }
   },
+  //======= 数据管理, 编辑
   admin: async function (page) {
     let req = this.request,
         res = this.response,
@@ -42,7 +57,7 @@ module.exports = {
 
     if(page === 'users'){
       data = await JsonDB.find('Bestme:Users');
-    }if(page === 'editor'){
+    }else if(page === 'editor'){
       let userId = this.cookies.get('sign_code'),
           key = settings.keys['app_key'];
       if(!userId){
@@ -50,9 +65,28 @@ module.exports = {
       }
 
       let userData = await JsonDB.find(`Bestme:${userId}`).data[0] || {};
+      Object.keys(userData).forEach(function (key) {
+        if(key.has('picture') && !userData[key].has('cdn.15ba.cn')){
+          userData[key] = req.helper.qbox_cdn(userData[key]);
+        }
+      });
 
-      data = Object.assign(userData, {userPageId: util.RC4.lock(key, userId)});
+      data = Object.assign(userData, {
+        userPageId: util.RC4.lock(key, userId)
+      });
+    }else if(page === 'login'){
+      let users = await JsonDB.find('Bestme:Users'),
+          usersCount = 50;
+      if(users && users.data){
+         usersCount = (users.data[0] || {}).count;
+      }
+
+      data.totalInvite = 50;
+      data.availabeInvite = 50 - usersCount;
     }
+
+    data.userId = this.cookies.get('sign_code');
+    data.cache = 'no'; //不要缓存页面
 
     await this.render_view('bestme/' + page, data);
   },
@@ -71,12 +105,17 @@ module.exports = {
       });
     }else{
       let domain = req.cookie_domain,
-          cookie_options = { maxAge: '2592000000' , path: '/' , domain: domain, httpOnly: true};
+          //one week 604800000 ms
+          cookie_options = {expires: new Date(Date.now() + 604800000) , path: '/' , domain: domain, httpOnly: true};
       this.cookies.set('sign_code', invite_code, cookie_options);
 
-      res.redirect('/bestme/editor');
+      var util = req.helper,
+          key = settings.keys['app_key'],
+          userPageId = util.RC4.lock(key, invite_code);
+      res.redirect('/bestme/pages/' + userPageId +'?edit');
     }
   },
+  //====== 创建或者更新用户数据
   save: async function () {
     let req = this.request,
         params = req.body,
@@ -85,9 +124,24 @@ module.exports = {
       return res.redirect('/bestme/login');
     }
 
+    let util = req.helper,
+        key = settings.keys['app_key'],
+        userPageId = util.RC4.lock(key, userId);
+
+    //====== 清除对应的用户页面缓存
+    Cache.keys(`*${userPageId}*`, function (err, keys) {
+      if(!err && keys){
+        keys.forEach(function(key){
+          Monitor.green('已经删除缓存， key:', key);
+          Cache.del(key); //remove key
+        });
+      }
+    });
+
     this.status = 200;
     this.body = await JsonDB.save(`Bestme:${userId}`, params);
   },
+  //====== 创建用户
   createUser: async function () {
     let req = this.request,
         res = this.response,
@@ -102,6 +156,10 @@ module.exports = {
     if(!users){
       users = { count: 0 };
     }
+    if(users.count > 50){
+      return res.success(400, {}, {msg: '邀请人数已经超过限制.'});
+    }
+
     users.count += 1;
     users[userId] = {
       user_ip: req.ip_from,
@@ -113,6 +171,7 @@ module.exports = {
     };
 
     await JsonDB.save(collection, users);
+    await JsonDB.find(`Bestme:${userId}`); //同时,创建用户数据文档
 
     if(params.respType === 'json'){
       res.success(200, {userId}, {msg: 'generate user id success.'});
@@ -120,6 +179,7 @@ module.exports = {
       res.redirect('/bestme/users');
     }
   },
+  //====== 更新用户数据
   updateUser: async function () {
     let req = this.request,
         params = req.body || {}, //user list

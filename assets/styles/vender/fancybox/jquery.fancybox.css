@@ -98,14 +98,14 @@
 }
 
 .fancybox-close {
-	/*position: absolute;*/
-	/*top: -18px;*/
-	/*right: -18px;*/
-	/*width: 36px;*/
-	/*height: 36px;*/
-	/*cursor: pointer;*/
-	/*z-index: 8040;*/
-	display: none;
+	position: absolute;
+	top: -18px;
+	right: -18px;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	z-index: 8040;
+	/*display: none;*/
 }
 
 .fancybox-nav {

@@ -43,7 +43,7 @@ module.exports = function (util) {
     }
 
     //====== 读取缓存，并响应
-    let html = await function(cb){
+    let html = await new Promise((resolve) => {
       Cache.get(cache_key, function (err,cache) {
         if (err) console.log(err);
         if (!err && cache) {
@@ -54,15 +54,15 @@ module.exports = function (util) {
               Cache.get(ssi_key, cb);
             }
           }, function (err, html) {
-            cb(null,html); //callback yield
+            resolve(html); //callback yield
           });
         } else {
           //=====如果页面缓存不存在，则更新所有缓存
           req.update_cache = true;
-          cb(null,null); //callback yield
+          resolve(); //callback yield
         }
       });
-    }
+    });
 
     //=== 如果没有缓存，触发下一个任务
     if(!html) return await next();

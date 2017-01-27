@@ -1,0 +1,32 @@
+extends ../layout
+
+block styles
+  link(rel="stylesheet",href=stylesheet_path("build/upload/images.min.css","67598df4dbd91a3ebb2920231513086e-"))
+
+block content
+  .page.upload-image-page
+    form#upload-form
+      h3.title 上传图片：
+      .photo
+        img.upload-photo(data-layzr=image_path("upload/photo-placeholder.jpg","5edc91ab53004eaa78895a99767bc5d2-"))
+      p.info
+        script#infoTpl(type="text/template")
+          .info-wrap
+            | 源文件：
+            span.text-danger  {{sourceSize}} KB
+            br
+            | 压缩后传输大小：
+            span.text-success  {{resultSize}} KB (省 {{scale}}%)
+
+      .control
+        a.btn.btn-success.btn-file-upload
+          input.file(id="file", type="file", accept="image/*", dui-change="onUploadFile")
+          | 选择图片
+        a.btn.btn-default.btn-submit(href="#", dui-click="submit") 确认上传
+      p.msg
+        | * 每个用户仅允许上传 20 张图片，如果超过限制，可到 "图片空间" 删除未使用的图片
+
+block scripts
+  script(src=javascript_path("build/upload/images.min.js","4e49474ca43d8368278b9074b2318503-"))
+
+

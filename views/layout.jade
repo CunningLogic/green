@@ -17,14 +17,10 @@ html
 
     //ssi:start name="base_css" file="ssi/share/{locale}/base_css.html" output="share"
     link(rel="shortcut icon" type="image/x-icon" href=image_path('icon/favicon.ico'))
-    <!--build:css  www.base.min.css -->
+    <!--build:css  green.base.min.css -->
     link(rel="stylesheet", href=stylesheet_path('bootstrap.css'),  media="all")
     link(rel="stylesheet", href=stylesheet_path('base.css'), media="all")
     link(rel="stylesheet", href=stylesheet_path('vender/fancybox/jquery.fancybox.css'))
-    <!--endbuild-->
-
-    <!--build:css  www.base.head.min.css -->
-    //link(rel="stylesheet", href=stylesheet_path('head/head-v1.css'), media="all")
     <!--endbuild-->
     //ssi:end
 
@@ -71,10 +67,12 @@ html
     script(src=javascript_path('dui/helper.js'))
     <!--endbuild-->
 
-    <!--build:js www.base.min.js -->
+    <!--build:js green.base.min.js -->
     script(src=javascript_path('libs/modernizr.js'))
     script(src=javascript_path('libs/bootstrap-js/bootstrap.min.js'))
     script(src=javascript_path('plugins/fancybox/jquery.fancybox.js'))
+    script(src=javascript_path('plugins/layzr/layzr.js'))
+    script(src=javascript_path('bus/share/common.js'))
     <!--endbuild-->
 
     //- ==== 是否启用监控

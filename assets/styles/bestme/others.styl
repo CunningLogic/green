@@ -1,16 +1,27 @@
 .others-page{
   /* padding: 30px 15px;*/
   line-height: 24px;
-  /*background: rgba(43, 218, 217, 0.8);*/
-  background: #a19b51;
-  color: #fff;
+  background-color: #333;
+  color: rgba(242, 242, 242, 0.5);
 
-  .top-list{
-    position: absolute;
-    z-index: 3;
+  .para{
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #666;
+    transform: skew(-5deg) translateZ(0);
+    -webkit-transform: skew(-5deg) translateZ(0);
   }
-  .top-item{
+
+  .swiper-container{
+    height: 100%;
     position: absolute;
+    z-index: 0;
+    width: 100%;
+    left: 0;
+  }
+
+  .top-item{
+    //position: absolute;
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -34,6 +45,75 @@
     height: 100%;
   }
 
+  .others-thumb-list{
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    .thumb-title{
+      font-size: 24px;
+      margin: 20px 0 30px 0;
+    }
+    .thumb-item{
+      position: relative;
+      padding: 0;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-cover{
+      position: absolute;
+      color: rgb(138, 138, 138);
+      background: rgba(0, 0, 0, 0.8);
+      width: 100%;
+      height: 100%;
+      .text{
+        width: 22px;
+        font-size: 14px;
+        border-left: 1px solid;
+        padding-left: 5px;
+      }
+    }
+    .thumb-text-wrap {
+      position: relative;
+    }
+    .thumb-text{
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      .thumb-text-title{
+        font-size: 22px;
+      }
+    }
+  }
+
+  #others-list{
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    .swiper-close{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: rgba(242, 242, 242, 0.5);
+      opacity: 1;
+      text-shadow: none;
+      width: 20px;
+      height: 20px;
+      background-image: url("/images/bestme/icons.svg");
+      background-position: -12px -56px;
+      background-color: transparent;
+      z-index: 99999999;
+    }
+  }
+  #others-list-pages{
+    height: 100%;
+    width: 100%;
+  }
+
   .title{
     text-align: center;
     margin-bottom: 30px;
@@ -48,16 +128,44 @@
 
   .picture{
     min-height: 300px;
-    width: 200px;
+    width: 90%;
     margin: auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 108px;
+    bottom: 100px;
+    left: 0;
+    right: 0;
   }
   .desc{
     position: absolute;
     bottom: 0;
     left:0;
     padding: 15px;
-    color: #fff;
+    color: rgb(138, 138, 138);
     background: rgba(0, 0, 0, 0.3);
     width: 100%;
+  }
+
+  .tip-layer{
+    position: absolute;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    .text{
+      text-align: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 30px;
+    }
   }
 }

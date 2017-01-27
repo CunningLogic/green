@@ -8,7 +8,7 @@
       return DUI.API.Factory({
         api: {
           method: 'post',
-          url: '/api/upload/image'
+          url: '/api/image/upload'
         },
         ajax:{
           processData: false,
@@ -30,6 +30,9 @@
             errors.push('请先选择一张图片后，开始上传');
           }
           return errors;
+        },
+        showMask: function () {
+          return true;
         }
       });
     }
@@ -66,8 +69,11 @@
     bind: function () {
       return {
         onUploadFile: function (e) {
+          DUI.Mask.show('正在加载图片...'); // show mask
+
           helper.uploadFile(e.target, function(err, rest){
             params.imageData = rest;
+            DUI.Mask.hide(); // hide mask
           });
         },
         submit: function (e) {

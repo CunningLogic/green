@@ -1,16 +1,14 @@
 extends ../layout
 
 block styles
-  <!--build:css  home/home.v1.min.css-->
-  link(href=stylesheet_path('uploads/image.css'), media="all", rel="stylesheet")
-  <!--endbuild-->
+  link(rel="stylesheet",href=stylesheet_path("build/media/images.min.css","67598df4dbd91a3ebb2920231513086e-"))
 
 block content
   .page.upload-image-page
     form#upload-form
       h3.title 上传图片：
       .photo
-        img.upload-photo(src="/images/upload/photo-placeholder.jpg")
+        img.upload-photo(data-layzr=image_path("upload/photo-placeholder.jpg","5edc91ab53004eaa78895a99767bc5d2-"))
       p.info
         script#infoTpl(type="text/template")
           .info-wrap
@@ -29,7 +27,6 @@ block content
         | * 每个用户仅允许上传 20 张图片，如果超过限制，可到 "图片空间" 删除未使用的图片
 
 block scripts
-  script(src=javascript_path('plugins/localResizeIMG/lrz.all.bundle.js'))
-  script(src=javascript_path('bus/uploads/canvas-image.js'))
+  script(src=javascript_path("build/media/images.min.js","281bda8087dc16b523fe9780c54c7d7d-"))
 
 

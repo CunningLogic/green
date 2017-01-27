@@ -1,0 +1,59 @@
+extends ../layout
+
+block styles
+  link(rel="stylesheet",href=stylesheet_path("build/bestme/login.css","87f0306b0d7d2f441820b1efece9cf0d-"))
+
+block content
+  .page.login-page
+    form.login-form#login-form(action="/api/bestme/login", method="POST")
+      h3.title 分享你的年度最佳
+      input.code-text.form-control(name="invite_code", type="text", placeholder="请填入邀请码", value=invite_code)
+      .text-warning(style="font-size:12px; margin-top: 10px")
+        | * 建议复制并保存邀请码到本地，邀请码一旦过期丢失即不可找回（尤其是开启隐身模式的同学）
+        br
+        br
+        | * 邀请码每人仅限获取一次，共 #{totalInvite} 个名额， 当前剩余名额 #{availabeInvite}
+      .controls.row
+        .col-xs-6
+          a.btn.btn-info.btn-invite.form-control(href="#") 获取邀请码
+        .col-xs-6
+          button.btn.btn-success.form-control(type="submit") 开启 拾光之旅
+
+      .tip.msg.text-danger
+      if is_invalid_user
+        .msg.text-danger 你输入的是无效的邀请码, 请检查
+
+
+block scripts
+  script.
+    $(function () {
+      var code = "#{userId}" || DUI.Storage.getItem('bestme_sign_code') || '';
+      var $code = $('.code-text'),
+          $tip = $('.tip');
+      if(!$code.val()) {
+        $code.val(code); //set default code
+      }
+      
+      $('.btn-invite').click(function () {
+        if(code || DUI.Storage.getItem('bestme_sign_code') ){
+          $tip.html('* 每人仅限获取一次邀请码');
+        }else{
+          $.post('/api/bestme/user', {respType: 'json'}, function (rest) {
+            var data = (rest.data || [{}])[0],
+                extra = (rest.extra || {});
+            $('.msg').html(''); //reset
+
+            if(data.userId){
+              $code.val(data.userId);
+              DUI.Storage.setItem("bestme_sign_code", data.userId);
+              $tip.html('获取邀请码成功');
+            }else{
+              $tip.html(extra.msg); // show error msg
+            }
+          });
+        }
+        return false;
+      });
+    });
+
+

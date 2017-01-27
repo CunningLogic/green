@@ -33,7 +33,7 @@ module.exports=function(req){
 
         var pos = path.lastIndexOf('.'),
             env = settings.env,
-            host = env == 'development'? 'http://s3.amazonaws.com/dbeta-me' : settings.cdn[env].host(path);
+            host = settings.cdn[env].host(path);
         path = [path.slice(0, pos), '-' , key, path.slice(pos)].join('');
         return host + "/assets/" + type + '/' + path;
       } else {
@@ -96,6 +96,13 @@ module.exports=function(req){
       }else{
         return null;
       }
+    },
+    qbox_cdn: function (path) {
+      if (!path || /^http|\/\//g.test(path)) return path;
+      if (path[0] == '/') path = path.substring(1);
+      var cdn_host = settings.cdn[settings.remote_env].host(path);
+
+      return cdn_host+ '/' + path;
     },
     sub_feature_product_path: function (name) {
       var product = req.product || {};
@@ -169,25 +176,6 @@ module.exports=function(req){
     },
     set_page: function (page) {
       req.current_page = page;
-    },
-    store_url: function (path, param, _http) {
-      var locale_path = req.get_locale_path('store');
-
-      if(!("/"+path).has(locale_path)){  // 判断是否带上了语言
-        path = locale_path + path;
-      }
-      // 判断url是否完整
-      if (path.substring(0,1) != '/'){ path="/"+path; }
-      // buy link 中可能包含 ja/...  需要从链接上移除ja
-      var store_path = req.get_domain_host('store') + path.replace('/ja','');
-
-      if(_http === 'https'){
-        return store_path.replace('http://','https://')
-      }else{
-        return _stats.flowStats(store_path, param);
-      }
-       origin = secret ? origin.replace('http://','https://') : settings.origin;
-       return origin;
     },
     account_url: function (path, locale) {
       var locale_path = req.get_locale_path(true,locale);

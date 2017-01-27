@@ -23,7 +23,7 @@ module.exports = {
     if (!num) num = 404;
 
     this.status = parseInt(num); //response 404 code
-    await this.render_view('home/err', {num: num});
+    await this.render_view('redirect/err', {num: num});
   },
   locale: async function (a,b) {
     //130722FOY-WMSLPI  010-51581581

@@ -1,0 +1,109 @@
+extends ../layout
+
+block styles
+  link(href=stylesheet_path("articles/top.css","7a122bab352daca2691f88ad5aa6da37-"),rel="stylesheet")
+
+block content
+  article.container#top
+    header
+      h1.logo
+        a(href="/")
+          img(data-layzr=image_path("icon/logo.png","a6d482f728e4b538fe6fa63593ddaec7-"),width="215",height="30",alt="Green House")
+      h3.title
+        span(style="color:#cc171c;") 推荐.
+        span 阅读
+    section.content
+      ul.row
+        li.col-xs-4.blog-item
+          a.blog(href="http://www.cnblogs.com/yexiaochai/p/4219523.html",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0001.jpg","79f33d1c9fb3b0346be3e645d8e69399-"))
+            .summary
+              h3.title
+                | HTML5: 浅谈移动前端的最佳实践
+              p.info
+                span.from 博客园
+                span.date 2015-5-20
+        li.col-xs-4.blog-item
+          a.blog(href="http://www.csdn.net/article/2014-12-03/2822932-chinese-mobile-app-ui-trends",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0002.jpg","14c680a39703b7f5f8c91b045262e83a-"))
+            .summary
+              h3.title
+                | UED: 老外看中国 移动应用UI设计的十大精髓
+              p.info
+                span.from CSDN
+                span.date 2015-5-20
+        li.col-xs-4.blog-item
+          a.blog(href="http://tech.163.com/15/0413/06/AN2HHDIM00094P0U.html",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0003.jpg","e1dcdb05fac1a371dff64de1ef643d75-"))
+            .summary
+              h3.title
+                | 硬件: 初创公司制造产品还有哪些障碍？
+              p.info
+                span.from 网易科技
+                span.date 2015-5-20
+      ul.row
+        li.col-xs-4.blog-item
+          a.blog(href="http://tech.163.com/15/0402/22/AM7TC5HJ00094P0U.html",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0004.jpg","f3129d3c4c6d02b8219a0ed81b1fe8a0-"))
+            .summary
+              h3.title
+                | 硬件: 越过2014年智能硬件死亡谷，谁活着爬出来了？
+              p.info
+                span.from 网易科技
+                span.date 2015-5-20
+        li.col-xs-4.blog-item
+          a.blog(href="http://isux.tencent.com/circle-ui-design-smartwatch.html",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0005.jpg","c627edab02f3debf0f0a78430af58e12-"))
+            .summary
+              h3.title
+                | UED: 圆–智能手表UI设计
+              p.info
+                span.from ISUX
+                span.date 2015-5-20
+        li.col-xs-4.blog-item
+          a.blog(href="http://www.qianduan.net/meta-tags-list/",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0006.jpg","c320c069540351a66739a29b625e9d61-"))
+            .summary
+              h3.title
+                | UED: meta标签常用属性整理
+              p.info
+                span.from 前端观察
+                span.date 2015-5-20
+      ul.row
+        li.col-xs-4.blog-item
+          a.blog(href="http://www.codeceo.com/article/what-i-wish-i-knew-when-i-started-my-career-as-a-software-developer.html",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0007.jpg","545e395fb5ebdf50d440bc116d07c75a-"))
+            .summary
+              h3.title
+                | 码道: 让年轻程序员少走弯路的14个忠告
+              p.info
+                span.from 码农网
+                span.date 2015-5-20
+        li.col-xs-4.blog-item
+          a.blog(href="http://div.io/topic/745",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0009.jpg","2f6b8ea53d13ab0f5062cbd2aa666e69-"))
+            .summary
+              h3.title
+                | UED: 变态的静态资源缓存与更新
+              p.info
+                span.from ISUX
+                span.date 2015-5-20
+        li.col-xs-4.blog-item
+          a.blog(href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89",target="_blank")
+            .cover
+              img.img-responsive(data-layzr=image_path("articles/top/0008.jpg","eb5f10b7a58d23f145e267b11d947bb7-"))
+            .summary
+              h3.title
+                | Git: Git 工具 - 储藏 Stashing
+              p.info
+                span.from Git
+                span.date 2015-5-20
+

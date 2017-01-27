@@ -27,10 +27,10 @@ if (typeof appStart === 'undefined' && argv.env === "gulp") {
   }
   settings.env = env;
   settings.remote_env = env;
-  bootstrap({}, function () {});//初始化
+  bootstrap({}, function () {}, 'gulp');//初始化
 } else {
   if (bootstrap){
-    bootstrap({}, function () {});//初始化
+    bootstrap({}, function () {}, 'gulp');//初始化
   }
   tasks.push('gulp-watch');
 }

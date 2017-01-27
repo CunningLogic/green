@@ -1,0 +1,34 @@
+extends ../layout
+
+block styles
+  link(rel="stylesheet",href=stylesheet_path("build/media/music.min.css","c7d365a32e76da0aca4f0ca2d1ff6e7f-"))
+
+block content
+  .page.music-page
+    form#music-form
+      h3.title 搜索音乐：
+      .input-group.search-box
+        input#input_search.form-control(type='text', name="input_search", placeholder="输入歌名或者歌手姓名")
+        a.input-group-addon.btn.btn-default.btn-submit(href="#", dui-click="search") 搜索音乐
+      .photo.hidden
+        img.upload-photo(data-layzr=image_path("upload/photo-placeholder.jpg","5edc91ab53004eaa78895a99767bc5d2-"))
+      p.msg
+        | * 付费歌曲不可选择和使用
+      ul.music-list
+        script#infoTpl(type="text/template")
+          li.music-item.row(id="{{songId}}", data-song-id="{{songId}}")
+            .col-xs-4
+              .picture
+                img(src="{{cover}}")
+            .col-xs-8
+              .music-title
+                 | 专辑：《{{album}}》
+                 br
+                 | 歌曲：【{{title}}】
+              .music-info 演唱：{{artist}}， {{needPay}}
+
+
+block scripts
+  script(src=javascript_path("build/media/music.min.js","603bc9326850232a890d638808b65314-"))
+
+

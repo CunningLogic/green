@@ -1,0 +1,30 @@
+extends ../layout
+
+block styles
+  link(href=stylesheet_path("home/err.css","fb1e19f5767dc4c6f56835461ae2924d-"), media="all", rel="stylesheet")
+
+block content
+  .err-page
+    section
+      .container.text-center
+        .row.err-main
+          .col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1
+            h1!=num
+            //p!=www_view('err.'+num+'.spec')
+            p
+              | 页面不存在
+              br
+              | 或者服务暂时不可用
+        .row.err-desc
+          .col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1
+            p.hidden
+              !=www_view('err.go_back_to')
+              | &nbsp;
+              a(href=url(''))= 'DJI.COM'
+              !=www_view('err.go_back_to.after')
+            p.hidden
+              !=www_view('err.or')
+              | &nbsp;
+              a(href=url('support'))!=www_view('err.contact_us')
+              | &nbsp;
+              !=www_view('err.about_problem')

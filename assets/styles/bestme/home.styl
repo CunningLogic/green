@@ -3,7 +3,8 @@
    width: 100%;
    height: 100%;
    overflow: hidden;
-   font-family: SimSun;
+   background-color: #333;
+   color: rgba(242, 242, 242, 0.5);
 
   .btn-circle{
     margin: 40px auto 0px;
@@ -18,52 +19,52 @@
     text-align:center;
     background: #fff;
     background: radial-gradient(rgba(166, 213, 24, 0.6), #fff);
-
   }
 
-  .year-title{
+  .bg-cover{
+    width: 100%;
+    height: 100%;
     position: absolute;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .cell{
+    padding: 0;
+  }
+  .bestme-title{
+     width: 22px;
+  }
+  .vr-text{
+    width: 22px;
+    font-size: 20px;
+    float: left;
+  }
+
+  .bestme-year{
+    position: absolute;
+    top: 80px;
+    left: 0;
+    max-height: 190px;
+    width: 90%;
+    overflow: hidden;
+  }
+  .year-title{
     text-align: center;
-    color: #fff;
-    background: rgba(223, 0, 35, 0.7);
-    //border: 1px solid rgba(223,0,35,0.6);
-    border-radius: 4px;
-    padding: 5px;
-    font-size: 26px;
-    top: 33px;
-    left: 0px;
-    width: 39px;
-    margin: auto;
-    right: 0px;
-    height: 160px;
-    bottom: 0;
-    z-index: 2;
-    small{
-      color: #fff;
-      font-size: 12px;
-      font-family: Arial,Helvetica,sans-serif; */
-    }
+    font-size: 20px;
+    //border-bottom: 1px solid rgba(242, 242, 242, 0.2);
+    //padding-bottom: 10px;
   }
   .year-desc{
-    position: absolute;
-    width: 43px;
-    margin: auto;
+    line-height: 25px;
+    margin-top: 20px;
     text-align: center;
-    right: 0;
-    left: 158px;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    z-index: 2;
-    //text-shadow: 1px 2px 3px #999;
   }
+
   .picture{
-    position: absolute;
-    opacity: 0.6;
-    top: 55%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    z-index: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #666;
   }
   .sub-title{
     margin: 10px 0 20px 0;

@@ -248,7 +248,7 @@ function I18n(req, options) {
         if (err) {
           return callback(err, null, null);
         }
-        if(!key_list || key_list.length === 0){
+        if(!key_list || key_list.length === 0 || settings.i18n === false){
           return callback(null, {translated: false, data: html});
         }
         self.collection({keys: key_list, locale: locale, update_cache: update}, function (err, data) {

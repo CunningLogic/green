@@ -40,8 +40,9 @@ module.exports = {
   'post /api/bestme': { to: 'BestMe#save' },
   'post /api/bestme/login': { to: 'BestMe#login' },
 
-  'get /upload/:page': { to: 'Upload#page' },
-  'post /api/upload/image': { to: 'Upload#image' },
+  'get /media/:page': { to: 'Media#page' },
+  'post /api/image/upload': { to: 'Media#image' },
+  'get /api/music/search': { to: 'Media#music' },
 
   'get /work/:page': { to: 'Work#pages' },
 

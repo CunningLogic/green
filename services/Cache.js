@@ -97,6 +97,9 @@ module.exports=function(callback){
     hgetall:function(key,callback){
       this._invoke('hgetall',arguments,'read');
     },
+    keys:function (key, callback) {
+      this._invoke('keys', arguments, 'read');
+    },
     set:function(key,value){
       if (typeof value != 'undefined'){
         this._invoke('set',arguments,'write');

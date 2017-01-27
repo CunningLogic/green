@@ -1,25 +1,53 @@
 //- link(rel="stylesheet" href=javascript_path('plugins/animsition/css/animsition.min.css'))
 
 .page.bestme-page.others-page
-  ul#top-list
-    each top, index in [3, 2, 1]
-      - title = locals['others_title_' + index] || ''
-      - imgSrc = locals['others_picture_' + index]
-
-      li.page.top-item
-        .bg-wrap
-          canvas.canvas-bg(style="width:100%; height: 100%;")
-          img.hidden.bg-img(src=image_path('bestme/p1.jpg'))
-        .content
-          h3.title
-            - matches = title.match(/#(.*)#(.*)/);
-            big.logo
-             | 2016 年度最佳：
-             = matches && matches[1]
+  .others-thumb-list.photo-swiper(data-swiper="#others-list")
+    //h1.thumb-title
+    .row(style="height: 50%;")
+      .col-xs-6.thumb-item.swiper-thumb.ani(data-index="0", style="background-image: url(#{others_picture_0})", swiper-animate-effect="fadeIn", swiper-animate-duration="3s", swiper-animate-delay="1s")
+        .bg-cover
+          .text.center= others_type_0 || '添加类别'
+      .col-xs-6.thumb-item
+        .thumb-text.center.ani(swiper-animate-effect="fadeIn", swiper-animate-duration="3s", swiper-animate-delay="0.3s")
+          .thumb-text-title 在
+          .thumb-text-desc
+            | 最惬意的那一刻，
             br
-            = matches && matches[2]
-          .picture
-            if imgSrc
-              img(src=imgSrc, width="100%")
-          .desc
-            p= locals['others_desc_' + index]
+            | 你会想起，
+            br
+            | 生活本应如此饱满盈润
+    .row(style="height: 50%;")
+      .col-xs-6.thumb-item.swiper-thumb.ani(data-index="1",style="background-image: url(#{others_picture_1})", swiper-animate-effect="fadeIn", swiper-animate-duration="3s", swiper-animate-delay="1.5s")
+        .bg-cover
+          .text.center= others_type_1 || '添加类别'
+      .col-xs-6.thumb-item.swiper-thumb.ani(data-index="2",style="background-image: url(#{others_picture_0})", swiper-animate-effect="fadeIn", swiper-animate-duration="3s", swiper-animate-delay="2s")
+        .bg-cover
+          .text.center= others_type_2 || '添加一个类别吧'
+
+  #others-list
+    #others-list-pages
+      each top, index in [3, 2, 1]
+        - type = locals['others_type_' + index] || ''
+        - title = locals['others_title_' + index] || ''
+        - imgSrc = locals['others_picture_' + index]
+        if title
+          .page.top-item
+            //.canvas-blur.bg-wrap
+              canvas.canvas-bg(style="width:100%; height: 100%;")
+              img.hidden.bg-img(src=image_path('bestme/p1.jpg'))
+            .content
+              h3.title.ani(swiper-animate-effect="fadeInUp", swiper-animate-duration="0.6s", swiper-animate-delay="0.3s")
+                //- matches = title.match(/#(.*)#(.*)/);
+                big.logo
+                 | 2016 年度最佳：
+                 = type
+                br
+                = title
+              if imgSrc
+                .picture.ani(style="background-image: url(#{imgSrc})", swiper-animate-effect="fadeInUp", swiper-animate-duration="0.8s", swiper-animate-delay="0.8s")
+              .desc.ani(swiper-animate-effect="fadeInUp", swiper-animate-duration="0.6s", swiper-animate-delay="1.6s")
+                p= locals['others_desc_' + index]
+    .close.swiper-close
+  //.tip-layer.ani(swiper-animate-effect="fadeOut", swiper-animate-duration="1.5s", swiper-animate-delay="0.3s")
+  //  .text
+  //    | 此页面可以【向下】或者【左右】滑动

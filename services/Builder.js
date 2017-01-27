@@ -19,6 +19,9 @@ var rename = require("gulp-rename");
 var parallelize = require("concurrent-transform");
 var useref = require('gulp-useref');
 
+var qiniuPublish = require('node-qiniu');
+var qn = require('qn');
+
 var async = require('async');
 var crypto = require('crypto');
 //=====linux file copy
@@ -270,7 +273,7 @@ module.exports = function (req) {
             });
         });
     },
-    //=======publish assets to cdn
+    //=======publish assets to aws cdn
     publish_cdn: function (env, callback, _manifest) {
       var publisher = awspublish.create({
         params: {
@@ -325,6 +328,132 @@ module.exports = function (req) {
           callback(err);
         });
     },
+
+    /**
+     * 上传 七牛 存储空间
+     *
+     * config {
+     *   needCache: false,
+     *   AK: 'accessKey',
+     *   SK: 'secretKey',
+     *   bucket: 'bucket',
+     *   basePath: 'root'
+     * }
+     * */
+    publish_qbox: function (manifest, config, done) {
+      //manifest = {
+      //  key: "assets/styles/vender/swiper-848ea9d3f221678f84e380146969b605.css",
+      //  key: "assets/styles/ams/apps-02dc3071597d686b15d8017df15d1bac.css",
+      //  key: "assets/styles/ams/cache-9f8f1a5279ee09f446432263b53e444e.css":
+      //};
+
+      if(!config) {
+        return Monitor.error('{ bucket, AK, SK } , must in config.');
+      }
+
+      config = Object.assign({
+        needCache: false,
+        AK: 'accessKey',
+        SK: 'secretKey',
+        bucket: 'bucket',
+        basePath: settings.base_path + '/build/',
+        folder: 'assets/'
+      }, config);
+
+      console.log(config);
+
+      //===== 加载资源缓存列表
+      var bucket = config.bucket,
+          file_path = settings.base_path + '/.qnpublish-' + bucket,
+          cache = {},
+          cdn_tasks = [],
+          errors = {length: 0};
+      if(config.needCache && fs.existsSync(file_path)) {
+        cache = JSON.parse(fs.readFileSync(file_path, 'utf-8') || "{}");
+      }
+
+      var client = qn.create({
+        accessKey: config.AK,
+        secretKey: config.SK,
+        bucket: config.bucket,
+        //origin: 'http://{bucket}.u.qiniudn.com',
+        // timeout: 3600000, // default rpc timeout: one hour, optional
+        // if your app outside of China, please set `uploadURL` to `http://up.qiniug.com/`
+        uploadURL: 'http://up.qiniu.com/'
+      });
+
+      //===== 上传资源到 cdn
+      Object.keys(manifest).forEach(function (k) {
+        var md5_path = config.folder + manifest[k];
+        if(cache[md5_path]) {
+          return false; //skip 不重复上传
+        }
+
+        cdn_tasks.push(function (cb) {
+          var file_path = config.basePath + md5_path;
+
+          client.uploadFile(file_path, {key: md5_path}, function (err, result) {
+              if(err) {
+                errors[md5_path] = false;
+                errors.length += 1;
+                Monitor.error('上传文件失败：' + md5_path);
+                console.error(err.ResponseError);
+              }else{
+                Monitor.green('上传文件成功：' + md5_path);
+                cache[md5_path] = k;// md5_path => key
+              }
+              console.log('剩余文件数：', --cdn_tasks.length);
+              return cb(null, result);
+          });
+        });
+      });
+
+      cdn_tasks.forEach(function (tass) {
+        //console.log('#####', tass);
+      });
+
+
+      //====== 如果资源任务为空，不做任何处理
+      if(cdn_tasks.length === 0) {
+        return Monitor.error('<------ 没有资源需要上传.');
+      }
+
+      Monitor.green('开始上传文件, 共有 ' + cdn_tasks.length + ' 个资源等待上传');
+      async.parallelLimit(cdn_tasks, 10, function (err, list) {
+        if(err) {
+          Monitor.error('资源上传失败 ------>');
+          console.log(err);
+        }else{
+          Monitor.green('<------ 资源上传完成');
+          if(errors.length > 0){
+            Monitor.error('其中失败资源 ' + errors.length + '个，请重新尝试上传');
+            console.error(errors);
+          }
+        }
+
+        //===== 写入上传缓存列表
+        if(config.needCache){
+          fs.writeFileSync(file_path, JSON.stringify(cache, null ,2),'utf-8');
+        }
+
+        if(_.isFunction(done)) {
+          return done(err || errors.length, list);
+        }
+      });
+    },
+
+    /***
+     * 匹配 文本中的 ssi 片段
+     * params:{
+     *   html: '',     //html 文本
+     *   filePath: '',  //获取html的文件路径
+     *   root: '',     //文件存储根路径
+     *   env: '',      //生成环境，生产环境，dbeta环境的路径，生成的静态文件路径不同
+     *   ssi: [],      // ssi片段的类型, ['share', 'alone'], 对应 output 属性
+     *   cache: function(ssiPath, ssiContent){} //获取到片段后的 处理函数,可选
+     * }
+     * needFlag: true|false 是否需要保留 ssi 标记
+     * */
     match_ssi: function (params) {
       var html = params.html || fs.readFileSync(params.filePath, 'utf-8'),
         matches = html.match(/<!--ssi:start[\s\S]*?ssi:end-->/gi) || [],

@@ -19,7 +19,7 @@ var gulp = require('gulp');
 var gulpTask = require('../gulpfile');
 var JsonDBervice = require('../services/JsonDB');
 
-module.exports.bootstrap = function (app, cb) {
+module.exports.bootstrap = function (app, cb , from) {
   if (!settings.keys) {
     return console.error("\nError: You don't have private settings, please ask team developer to get.\n");
   }
@@ -40,7 +40,7 @@ module.exports.bootstrap = function (app, cb) {
   conf.remote_origin = conf.remote[conf.remote_env].origin;
   conf.is_production = conf.redis == 'aws' || conf.redis == 'dji' || conf.publish == 'production';
   conf.is_preview = conf.publish == 'preview';
-  conf.base_path = app.basePath;
+  conf.base_path = app.basePath || process.cwd();
 
   //=== 获取本地IP地址,便于查看当前页面对应的服务器
   let IPv4 = "127.0.0.1",
@@ -81,6 +81,10 @@ module.exports.bootstrap = function (app, cb) {
 
       gulpTask.start(tasks);
     }
+  }
+
+  if(from === 'gulp'){
+    return cb(null, 'started');
   }
 
   console.log('==========> app started');

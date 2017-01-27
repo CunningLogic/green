@@ -1,0 +1,62 @@
+extends ../layout
+
+block styles
+  link(rel="stylesheet",href=stylesheet_path("build/green.bestme.base.min.css","c06ed36067618ad5360d1785cd53e35e-"))
+
+block content
+  .bestme-pages.container
+    .loading-cover
+      .page-loading
+        .cube1
+        .cube2
+        .text 正在努力的加载页面...
+
+    .horizontal-screen.page
+      .tip-text.center 同学，竖屏才是正确的打开姿势哦
+
+    #page-swiper.swiper-container
+      .parallax-bg(data-layzr=image_path("bestme/index/bg-bestme1.jpg","2ae82684ff40a4df5d1d08f403dd01be-"), style="width: 130%;",data-swiper-parallax="-50%",data-swiper-parallax-duration="1000", data-layzr-bg)
+      .swiper-wrapper
+        .swiper-slide#index(data-index=0)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include home
+        .swiper-slide#transition-photo(data-index=1)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include transition-photo
+        .swiper-slide#photo(data-index=2)
+           include photo
+        .swiper-slide#transition-music(data-index=3)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include transition-music
+        .swiper-slide#music(data-index=4)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include music
+        .swiper-slide#others(data-index=5)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include others
+        .swiper-slide#spring(data-index=6)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include spring
+        .swiper-slide#join(data-index=7)
+          .parallax-warpper(data-swiper-parallax="-100")
+            include join
+    .arrow.arrow-right.hidden
+      .center(style="top: 55%;")
+        img(data-layzr=image_path("bestme/arrow-right.png","27f41bf2f243448f95fa6a9a5cd0446e-"))
+
+    if canEdit
+      .edit-controls.controls
+        i.close-edit.fa.fa-close.pull-left(style="margin-top: 8px;font-size: 16px;")
+        a.btn.btn-success.pull-right(dui-click="share") 分享页面
+        a.btn.btn-info.pull-right.fancybox(href="/bestme/editor", style="margin-right:10px;", data-padding="0", data-margin="0", data-wrapcss="full-fancybox") 编辑页面
+      script.
+        $(function () {
+          DUI.Storage.setItem('bestme_sign_code', "#{userId}");
+        });
+
+block scripts
+  script(src=javascript_path("build/green.bestme.base.min.js","a43fe11a7bc7e3759c260d72164600d4-"))
+  //script(type="text/javascript", src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js")
+  //script.
+    //$youziku.load(".content", "c23eab236fdb49fb80aab9d340743812", "STXingkai");
+    //$youziku.draw();

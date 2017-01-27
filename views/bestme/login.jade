@@ -1,7 +1,7 @@
 extends ../layout
 
 block styles
-  <!--build:css  home/home.v1.min.css-->
+  <!--build:css  bestme/login.css-->
   link(href=stylesheet_path('bestme/login.css'), media="all", rel="stylesheet")
   <!--endbuild-->
 
@@ -10,14 +10,52 @@ block content
     form.login-form#login-form(action="/api/bestme/login", method="POST")
       h3.title 分享你的年度最佳
       input.code-text.form-control(name="invite_code", type="text", placeholder="请填入邀请码", value=invite_code)
-      .controls
-        button.btn.btn-success.form-control(type="submit") 开启 拾光之旅
+      .text-warning(style="font-size:12px; margin-top: 10px")
+        | * 建议复制并保存邀请码到本地，邀请码一旦过期丢失即不可找回（尤其是开启隐身模式的同学）
+        br
+        br
+        | * 邀请码每人仅限获取一次，共 #{totalInvite} 个名额， 当前剩余名额 #{availabeInvite}
+      .controls.row
+        .col-xs-6
+          a.btn.btn-info.btn-invite.form-control(href="#") 获取邀请码
+        .col-xs-6
+          button.btn.btn-success.form-control(type="submit") 开启 拾光之旅
+
+      .tip.msg.text-danger
       if is_invalid_user
         .msg.text-danger 你输入的是无效的邀请码, 请检查
 
 
-
 block scripts
-  //script(src=javascript_path('bus/bestme/editor.js'))
+  script.
+    $(function () {
+      var code = "#{userId}" || DUI.Storage.getItem('bestme_sign_code') || '';
+      var $code = $('.code-text'),
+          $tip = $('.tip');
+      if(!$code.val()) {
+        $code.val(code); //set default code
+      }
+      
+      $('.btn-invite').click(function () {
+        if(code || DUI.Storage.getItem('bestme_sign_code') ){
+          $tip.html('* 每人仅限获取一次邀请码');
+        }else{
+          $.post('/api/bestme/user', {respType: 'json'}, function (rest) {
+            var data = (rest.data || [{}])[0],
+                extra = (rest.extra || {});
+            $('.msg').html(''); //reset
+
+            if(data.userId){
+              $code.val(data.userId);
+              DUI.Storage.setItem("bestme_sign_code", data.userId);
+              $tip.html('获取邀请码成功');
+            }else{
+              $tip.html(extra.msg); // show error msg
+            }
+          });
+        }
+        return false;
+      });
+    });
 
 

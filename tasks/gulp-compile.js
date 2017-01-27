@@ -64,7 +64,8 @@ module.exports = function (_gulp, argv) {
       //======记录变更信息到日志
       fs.writeFileSync(log_path, JSON.stringify(change_log), 'utf-8');
 
-      Builder.Util.publish_cdn(env, function () {
+      var config = Object.assign({needCache: true}, settings.qbox);
+      Builder.Util.publish_qbox(cdn_manifest, config, function () {
         Monitor.green('------upload cdn finish---------');
         cdn_manifest = change_log = change_map = tasks = null;
 
@@ -73,7 +74,7 @@ module.exports = function (_gulp, argv) {
           console.log(errors); //output errors
         }
         deferred.resolve();
-      }, cdn_manifest);
+      });
     });
 
     return deferred.promise;

@@ -1,5 +1,5 @@
 .music-page{
-  background: #e3e3e3 url(/images/bestme/paper-bg.jpg);
+  background-color: #333;
   min-height: 100%;
   width: 100%;
 
@@ -32,7 +32,7 @@
     overflow: hidden;
     background-size: cover;
     border-radius: 50%;
-    border: 45px #333 solid;
+    border: 45px #000 solid;
     margin: 40px auto 30px;
     border-color: radial-gradient(rgba(51, 51, 51, 0.6), #000);
     opacity: 0.95;
@@ -43,16 +43,22 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 20px;
-    width: 20px;
+    height: 50px;
+    width: 50px;
     background: radial-gradient(rgba(51, 51, 51, 0.9), #000);
     margin: auto;
     border-radius: 50%;
+    text-align: center;
+    .fa-play{
+      color: rgba(242, 242, 242, 0.9);
+      font-size: 24px;
+      margin: 12px 0 0 6px;
+    }
   }
   .desc{
     margin: auto;
     line-height: 23px;
-    color: #707473;
+    color: rgba(242, 242, 242, 0.5);
   }
   .desc p{
     margin-bottom: 10px;
@@ -66,15 +72,12 @@
     margin-top: 40px;
   }
   .action a:visited{
-    color: #707473;
+    color: rgba(242, 242, 242, 0.5);
   }
   .btn-listen {
+    color: rgba(242, 242, 242, 0.5);
     border:1px rgb(166, 213, 24) solid;
     padding: 12px 35px;
     border-radius: 2px;
-  }
-  .btn-next {
-    border:1px rgba(211, 58, 49, 0.45) solid;
-    margin-left: 20px;
   }
 }

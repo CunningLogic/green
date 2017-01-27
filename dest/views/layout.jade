@@ -1,0 +1,74 @@
+doctype html
+html
+  head
+    //include share/layout/_meta
+    title Green House - #{title || '绿色创想，创意家园'}
+    block meta
+
+    if meta.canonical
+      meta(name="canonical",content=meta.canonical)
+    meta(http-equiv="X-UA Compatible",content="IE=edge")
+    if req.use_mobile
+      meta(name="viewport",content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+      meta(name="apple-mobile-web-app-capable",content="yes")
+    else
+      //- optimize for ipad
+      meta(name="viewport",content="width=device-width,initial-scale=0.5,minimum-scale=0.5")
+
+    //ssi:start name="base_css" file="ssi/share/{locale}/base_css.html" output="share"
+    link(rel="shortcut icon" type="image/x-icon" href=image_path("icon/favicon.ico","8b1fa0bb537066faa7169f36950de86f-"))
+    link(rel="stylesheet",href=stylesheet_path("build/green.base.min.css","4bf69e9f4caf79331122849cd4507a91-"))
+    //ssi:end
+
+    block styles
+
+    //ssi:start name="head_js" file="ssi/share/{device}/{locale}/footer.html" output="share"
+    script(src=javascript_path("libs/jquery/jquery_2.1.4.js","b0dc11d0a434aafe88908c7f33d71095-"))
+    <!--[if lte IE 9]>
+    script(src=javascript_path("","-"))
+    script(src=javascript_path("","-"))
+    <![endif]-->
+    //ssi:end
+
+  body(class="green-#{req.locale || 'cn'} green-#{req.device}")
+    //- body 可以指定 每个页面不相同的配置，data-{cfg} = {value}, 可以覆盖 app-config中指定的配置
+    //ssi:start name="header" file="ssi/share/{device}/{locale}/header.html" output="share"
+    ul#app-config.hidden
+      li.dui-cfg(data-key="env",data-value="#{settings.env}")
+      li.dui-cfg(data-key="locale",data-value="#{req.locale}")
+      li.dui-cfg(data-key="lang",data-value="#{req.lang}")
+      li.dui-cfg(data-key="use_mobile",data-value="#{req.use_mobile}",data-type="Boolean")
+      li.dui-cfg(data-key="local_ip",data-value="#{req.local_ip}")
+      li.dui-cfg(data-key="domain",data-value="#{req.cookie_domain}")
+    //ssi:end
+
+    block content
+
+    //ssi:start name="footer" file="ssi/share/{device}/{locale}/footer.html" output="share"
+    div#mask.hidden
+      div.load
+        img(data-layzr=image_path("share/loading.gif","1b2d4fe3f436882e66e75a92564d0489-"),width="32px")
+        p.wait-msg
+      div.overlay
+    //ssi:end
+
+    //ssi:start name="base_js" file="ssi/share/{locale}/base_js.html" output="share"
+    script(src=javascript_path("build/dui.base.min.js","e04a07056e7d7edfd4ceddd99a7060bf-"))
+
+    script(src=javascript_path("build/green.base.min.js","9200e29e6be93e2da1ce37e3ec0a2b5e-"))
+
+    //- ==== 是否启用监控
+    //if settings.monitor
+      //script(src=javascript_path("monitor/index.js"), async)
+
+    //- 百度统计
+    if settings.is_production
+      script.
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript async src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1d2856d63a5b58feec85966a07844866' type='text/javascript'%3E%3C/script%3E"));
+    //ssi:end
+
+    block scripts
+
+
+
